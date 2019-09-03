@@ -4,7 +4,7 @@ An implementation of a laravel API with best design practices and learnings. (DD
 ## TODO
 
 #### Must have
-- [ ] Upgrade to stable 6.0
+- [x] Upgrade to stable 6.0
 - [ ] Example routes for rest
 - [ ] Setup system for DTO objects
 - [ ] Integrate broadway for CQRS

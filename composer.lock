@@ -630,16 +630,16 @@
         },
         {
             "name": "facade/ignition",
-            "version": "1.4.1",
+            "version": "1.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/ignition.git",
-                "reference": "abd79060f6ed6c33eae2bc177369df41a731b0be"
+                "reference": "208f19b5101218d71e08c200861bb78f795a36da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/ignition/zipball/abd79060f6ed6c33eae2bc177369df41a731b0be",
-                "reference": "abd79060f6ed6c33eae2bc177369df41a731b0be",
+                "url": "https://api.github.com/repos/facade/ignition/zipball/208f19b5101218d71e08c200861bb78f795a36da",
+                "reference": "208f19b5101218d71e08c200861bb78f795a36da",
                 "shasum": ""
             },
             "require": {
@@ -694,7 +694,7 @@
                 "laravel",
                 "page"
             ],
-            "time": "2019-09-03T07:57:08+00:00"
+            "time": "2019-09-03T12:11:56+00:00"
         },
         {
             "name": "facade/ignition-contracts",
@@ -945,28 +945,28 @@
         },
         {
             "name": "laravel/framework",
-            "version": "6.x-dev",
+            "version": "v6.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "fc7b632cc37a7a54d379a843b7fabb050eea97fa"
+                "reference": "89c81d4dc37714d82521d05dc003b26b2a86defc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/fc7b632cc37a7a54d379a843b7fabb050eea97fa",
-                "reference": "fc7b632cc37a7a54d379a843b7fabb050eea97fa",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/89c81d4dc37714d82521d05dc003b26b2a86defc",
+                "reference": "89c81d4dc37714d82521d05dc003b26b2a86defc",
                 "shasum": ""
             },
             "require": {
                 "doctrine/inflector": "^1.1",
                 "dragonmantank/cron-expression": "^2.0",
-                "egulias/email-validator": "^2.0",
+                "egulias/email-validator": "^2.1.10",
                 "erusev/parsedown": "^1.7",
                 "ext-json": "*",
                 "ext-mbstring": "*",
                 "ext-openssl": "*",
                 "league/flysystem": "^1.0.8",
-                "monolog/monolog": "^1.12",
+                "monolog/monolog": "^1.12|^2.0",
                 "nesbot/carbon": "^2.0",
                 "opis/closure": "^3.1",
                 "php": "^7.2",
@@ -974,14 +974,14 @@
                 "psr/simple-cache": "^1.0",
                 "ramsey/uuid": "^3.7",
                 "swiftmailer/swiftmailer": "^6.0",
-                "symfony/console": "^4.3",
-                "symfony/debug": "^4.3",
-                "symfony/finder": "^4.3",
-                "symfony/http-foundation": "^4.3",
-                "symfony/http-kernel": "^4.3",
-                "symfony/process": "^4.3",
-                "symfony/routing": "^4.3",
-                "symfony/var-dumper": "^4.3",
+                "symfony/console": "^4.3.4",
+                "symfony/debug": "^4.3.4",
+                "symfony/finder": "^4.3.4",
+                "symfony/http-foundation": "^4.3.4",
+                "symfony/http-kernel": "^4.3.4",
+                "symfony/process": "^4.3.4",
+                "symfony/routing": "^4.3.4",
+                "symfony/var-dumper": "^4.3.4",
                 "tijsverkoyen/css-to-inline-styles": "^2.2.1",
                 "vlucas/phpdotenv": "^3.3"
             },
@@ -1024,11 +1024,11 @@
                 "filp/whoops": "^2.4",
                 "guzzlehttp/guzzle": "^6.3",
                 "league/flysystem-cached-adapter": "^1.0",
-                "mockery/mockery": "^1.0",
+                "mockery/mockery": "^1.2.3",
                 "moontoast/math": "^1.1",
                 "orchestra/testbench-core": "^4.0",
                 "pda/pheanstalk": "^4.0",
-                "phpunit/phpunit": "^8.0",
+                "phpunit/phpunit": "^8.3",
                 "predis/predis": "^1.1.1",
                 "symfony/cache": "^4.3",
                 "true/punycode": "^2.1"
@@ -1036,6 +1036,7 @@
             "suggest": {
                 "aws/aws-sdk-php": "Required to use the SQS queue driver, DynamoDb failed job storage and SES mail driver (^3.0).",
                 "doctrine/dbal": "Required to rename columns and drop SQLite columns (^2.6).",
+                "ext-gd": "Required to use Illuminate\\Http\\Testing\\FileFactory::image().",
                 "ext-memcached": "Required to use the memcache cache driver.",
                 "ext-pcntl": "Required to use all features of the queue worker.",
                 "ext-posix": "Required to use all features of the queue worker.",
@@ -1085,7 +1086,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2019-09-02T16:52:36+00:00"
+            "time": "2019-09-03T13:09:57+00:00"
         },
         {
             "name": "laravel/tinker",
