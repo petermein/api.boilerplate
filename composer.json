@@ -14,11 +14,13 @@
     "require": {
         "php": "^7.2",
         "broadway/broadway": "^2.1",
+        "darkaonline/l5-swagger": "^6.0",
         "facade/ignition": "^1.4",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
-        "rebing/graphql-laravel": "master-dev",
+        "rebing/graphql-laravel": "^2.1",
+        "symfony/messenger": "^4.3",
         "zircote/swagger-php": "^3.0"
     },
     "require-dev": {

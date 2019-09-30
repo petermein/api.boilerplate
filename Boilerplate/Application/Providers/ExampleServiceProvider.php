@@ -3,6 +3,8 @@
 
 namespace Boilerplate\Application\Providers;
 
+use Boilerplate\Application\Example\Queries\GetAllQuery\GetAllQueryHandler;
+use Boilerplate\Application\Example\Queries\GetAllQuery\GetAllQueryListener;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -32,14 +34,8 @@ class ExampleServiceProvider extends ServiceProvider
      */
     public function register()
     {
-//        $this->app->bind(
-//            'BowlingAlley\Domain\Repositories\Janitor\JanitorWorkingHoursRepository',
-//            'BowlingAlley\Infrastructure\Repositories\Janitor\JanitorWorkingHoursEloquentRepository'
-//        );
-//        $this->app->bind(
-//            'BowlingAlley\Domain\Repositories\Janitor\JanitorPaidSickLeaveScheduleRepository',
-//            'BowlingAlley\Infrastructure\Repositories\Janitor\JanitorPaidSickLeaveScheduleEloquentRepository'
-//        );
+        $this->app->bind(GetAllQueryListener::class);
+        $this->app->bind(GetAllQueryHandler::class);
     }
     /**
      * Get the services provided by the provider.
@@ -49,8 +45,7 @@ class ExampleServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
-//            'BowlingAlley\Domain\Repositories\Janitor\JanitorWorkingHoursRepository',
-//            'BowlingAlley\Domain\Repositories\Janitor\JanitorPaidSickLeaveScheduleRepository',
+
         ];
     }
 }

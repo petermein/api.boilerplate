@@ -165,11 +165,17 @@ return [
         /*
          * Package Service Providers...
          */
+        L5Swagger\L5SwaggerServiceProvider::class,
 
         /**
          * UI
          */
         Boilerplate\UI\Api\REST\RouteServiceProvider::class,
+
+        /**
+         * Infrastructure
+         */
+        Boilerplate\Infrastructure\Bus\BusServiceProvider::class,
 
         /*
          * Application Service Providers...

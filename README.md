@@ -21,6 +21,7 @@ An implementation of a laravel API with best design practices and learnings. (DD
 - [ ] Add helm chart
 - [ ] Create command generators
 - [ ] WebUI example
+- [ ] Rename base command (Boilerplate -> x)
 
 #### Could have
 - [ ] Integrate twofactor with passport
