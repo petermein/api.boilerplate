@@ -5,6 +5,7 @@ namespace Boilerplate\UI\Api\REST\Example;
 use App\Http\Controllers\Controller;
 use Boilerplate\Application\Example\Queries\GetAllQuery\GetAllQuery;
 use Boilerplate\Infrastructure\Bus\QueryBus;
+use Illuminate\Http\Request;
 
 class ExampleController extends Controller
 {
@@ -36,11 +37,13 @@ class ExampleController extends Controller
      *   )
      * )
      */
-    public function getAll(){
+    public function getAll(Request $request)
+    {
+        //map request to query
 
-        $response = $this->queryBus->query(new GetAllQuery());
+        $response = $this->queryBus->query((GetAllQuery::fromArray($request->all())));
 
-        //validate incoming request
+        //validate incoming request -> done in middleware
 
         //Make the CQRS request
 

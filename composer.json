@@ -1,73 +1,73 @@
 {
-    "name": "petermein/laravel.api.boilerplate",
-    "type": "project",
-    "description": "An implementation of a laravel API with best design practices and learnings. (DDD, CQRS, ES, Rest and GraphQL).",
-    "keywords": [
-        "framework",
-        "laravel",
-        "CQRS",
-        "ES",
-        "REST",
-        "GraphQL"
-    ],
-    "license": "MIT",
-    "require": {
-        "php": "^7.2",
-        "broadway/broadway": "^2.1",
-        "darkaonline/l5-swagger": "^6.0",
-        "facade/ignition": "^1.4",
-        "fideloper/proxy": "^4.0",
-        "laravel/framework": "^6.0",
-        "laravel/tinker": "^1.0",
-        "rebing/graphql-laravel": "^2.1",
-        "symfony/messenger": "^4.3",
-        "zircote/swagger-php": "^3.0"
-    },
-    "require-dev": {
-        "filp/whoops": "^2.0",
-        "fzaninotto/faker": "^1.4",
-        "mockery/mockery": "^1.0",
-        "nunomaduro/collision": "^3.0",
-        "nunomaduro/larastan": "^0.4.0",
-        "phpunit/phpunit": "^8.0"
-    },
-    "config": {
-        "optimize-autoloader": true,
-        "preferred-install": "dist",
-        "sort-packages": true
-    },
-    "extra": {
-        "laravel": {
-            "dont-discover": []
-        }
-    },
-    "autoload": {
-        "psr-4": {
-            "App\\": "app/",
-            "Boilerplate\\": "Boilerplate/"
-        },
-        "classmap": [
-            "database/seeds",
-            "database/factories"
-        ]
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Tests\\": "tests/"
-        }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
-    "scripts": {
-        "post-autoload-dump": [
-            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
-        ],
-        "post-root-package-install": [
-            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
-        ],
-        "post-create-project-cmd": [
-            "@php artisan key:generate --ansi"
-        ]
+  "name": "petermein/laravel.api.boilerplate",
+  "type": "project",
+  "description": "An implementation of a laravel API with best design practices and learnings. (DDD, CQRS, ES, Rest and GraphQL).",
+  "keywords": [
+    "framework",
+    "laravel",
+    "CQRS",
+    "ES",
+    "REST",
+    "GraphQL"
+  ],
+  "license": "MIT",
+  "require": {
+    "php": "^7.4",
+    "broadway/broadway": "^2.3",
+    "darkaonline/l5-swagger": "^7.0",
+    "facade/ignition": "^2.0",
+    "fideloper/proxy": "^4.3",
+    "laravel/framework": "^7.0",
+    "laravel/tinker": "^2.2.0",
+    "rebing/graphql-laravel": "5.0.0-rc2",
+    "symfony/messenger": "^5.0",
+    "zircote/swagger-php": "^3.0"
+  },
+  "require-dev": {
+    "filp/whoops": "^2.0",
+    "fzaninotto/faker": "^1.9",
+    "mockery/mockery": "^1.2",
+    "nunomaduro/collision": "^4.1",
+    "nunomaduro/larastan": "^0.5",
+    "phpunit/phpunit": "^9.0"
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true
+  },
+  "extra": {
+    "laravel": {
+      "dont-discover": []
     }
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/",
+      "Boilerplate\\": "Boilerplate/"
+    },
+    "classmap": [
+      "database/seeds",
+      "database/factories"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "scripts": {
+    "post-autoload-dump": [
+      "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+      "@php artisan package:discover --ansi"
+    ],
+    "post-root-package-install": [
+      "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+    ],
+    "post-create-project-cmd": [
+      "@php artisan key:generate --ansi"
+    ]
+  }
 }

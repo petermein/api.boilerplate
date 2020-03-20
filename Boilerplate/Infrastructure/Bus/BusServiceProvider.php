@@ -6,9 +6,11 @@ namespace Boilerplate\Infrastructure\Bus;
 
 use Boilerplate\Application\Example\Queries\GetAllQuery\GetAllQuery;
 use Boilerplate\Application\Example\Queries\GetAllQuery\GetAllQueryHandler;
+use Boilerplate\Application\Example\Queries\GetAllQuery\GetAllQueryHandler2;
 use Boilerplate\Application\Example\Queries\GetAllQuery\GetAllQueryListener;
+use Boilerplate\Application\Example\Queries\GetAllQuery\GetAllQueryValidator;
+use Boilerplate\Infrastructure\Bus\Middleware\ValidationMiddleware;
 use Illuminate\Support\ServiceProvider;
-use Symfony\Component\Messenger\Handler\HandlersLocator;
 use Symfony\Component\Messenger\MessageBus;
 use Symfony\Component\Messenger\Middleware\HandleMessageMiddleware;
 use Symfony\Component\Messenger\Middleware\SendMessageMiddleware;
@@ -21,7 +23,8 @@ class BusServiceProvider extends ServiceProvider
      *
      * @var bool
      */
-    protected $defer = false;
+    protected bool $defer = false;
+
     /**
      * Bootstrap the service provider.
      *
@@ -31,6 +34,7 @@ class BusServiceProvider extends ServiceProvider
     {
         //
     }
+
     /**
      * Register the service provider.
      *
@@ -38,29 +42,37 @@ class BusServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(QueryBus::class, function(){
+        $this->app->singleton(QueryBus::class, function () {
             return new QueryBus(new MessageBus([
+                new ValidationMiddleware($this->app, [
+                    GetAllQuery::class => [
+                        GetAllQueryValidator::class
+                    ],
+                ]),
                 new HandleMessageMiddleware(
                     new ApplicationHandlerLocator(
                         $this->app,
                         [
                             GetAllQuery::class => [
-                                'handler' => GetAllQueryHandler::class
-                        ]
-                    ]) //todo write locator with reflection and glob, maybe with caching
+                                GetAllQueryHandler::class
+                            ]
+                        ])
+                //TODO: write locator with reflection and glob, maybe with caching
                 ),
                 new SendMessageMiddleware(
-                    new SendersLocator([
-                        GetAllQuery::class => [
-                            'outerspace' => GetAllQueryListener::class
+                    new SendersLocator(
+                        $this->app,
+                        [
+                            GetAllQuery::class => [
+                                GetAllQueryListener::class
+                            ],
                         ],
-                    ],
-                        $this->app
                     )
                 )
             ]));
         });
     }
+
     /**
      * Get the services provided by the provider.
      *

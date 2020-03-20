@@ -4,12 +4,18 @@
 namespace Boilerplate\Application\Example\Queries\GetAllQuery;
 
 
-use Symfony\Component\Messenger\HandleTrait;
+use Boilerplate\Infrastructure\Bus\Interfaces\Handler;
 
-class GetAllQueryHandler
+class GetAllQueryHandler implements Handler
 {
-    public function __invoke(GetAllQuery $getAllQuery)
+    /**
+     * @param GetAllQuery $getAllQuery
+     * @return ExampleListDto
+     */
+    public function __invoke(GetAllQuery $getAllQuery): ExampleListDto
     {
+        dump('handler');
+
         return new ExampleListDto();
     }
 }

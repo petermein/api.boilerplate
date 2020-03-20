@@ -4,7 +4,7 @@
 namespace Boilerplate\Infrastructure\Bus;
 
 
-use Psr\Container\ContainerInterface;
+use Illuminate\Container\Container;
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\Handler\HandlerDescriptor;
 use Symfony\Component\Messenger\Handler\HandlersLocatorInterface;
@@ -13,24 +13,28 @@ use Symfony\Component\Messenger\Stamp\ReceivedStamp;
 class ApplicationHandlerLocator implements HandlersLocatorInterface
 {
     /**
-     * @var ContainerInterface
+     * @var Container
      */
-    private $container;
-
-    private $handlers;
+    private Container $container;
 
     /**
-     * @param ContainerInterface $container
+     * @var array|\callable[][]|\Symfony\Component\Messenger\Handler\HandlerDescriptor[][]
+     */
+    private array $handlers;
+
+    /**
+     * @param Container $container
      * @param HandlerDescriptor[][]|callable[][] $handlers
      */
-    public function __construct(ContainerInterface $container, array $handlers)
+    public function __construct(Container $container, array $handlers)
     {
         $this->container = $container;
         $this->handlers = $handlers;
     }
 
     /**
-     * {@inheritdoc}
+     * @param Envelope $envelope
+     * @return iterable
      */
     public function getHandlers(Envelope $envelope): iterable
     {
@@ -38,7 +42,7 @@ class ApplicationHandlerLocator implements HandlersLocatorInterface
 
         foreach (self::listTypes($envelope) as $type) {
             foreach ($this->handlers[$type] ?? [] as $handlerDescriptor) {
-                if(is_string($handlerDescriptor)){
+                if (is_string($handlerDescriptor)) {
                     $handlerDescriptor = $this->container->get($handlerDescriptor);
                 }
 
@@ -63,7 +67,8 @@ class ApplicationHandlerLocator implements HandlersLocatorInterface
     }
 
     /**
-     * @internal
+     * @param Envelope $envelope
+     * @return array
      */
     public static function listTypes(Envelope $envelope): array
     {
@@ -75,6 +80,12 @@ class ApplicationHandlerLocator implements HandlersLocatorInterface
             + ['*' => '*'];
     }
 
+    /**
+     * @param Envelope $envelope
+     * @param HandlerDescriptor $handlerDescriptor
+     * @return bool
+     *
+     */
     private function shouldHandle(Envelope $envelope, HandlerDescriptor $handlerDescriptor)
     {
         if (null === $received = $envelope->last(ReceivedStamp::class)) {

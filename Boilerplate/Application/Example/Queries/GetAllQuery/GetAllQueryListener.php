@@ -21,9 +21,14 @@ class GetAllQueryListener implements SenderInterface
      * like delivery delay.
      *
      * If applicable, the returned Envelope should contain a TransportMessageIdStamp.
+     *
+     * @param Envelope $envelope
+     * @return Envelope
      */
     public function send(Envelope $envelope): Envelope
     {
         dump('send to outer space');
+
+        return $envelope;
     }
 }
