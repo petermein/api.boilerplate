@@ -88,7 +88,7 @@ class ApplicationHandlerLocator implements HandlersLocatorInterface
     protected function retrieveHandler($handlerDescriptor)
     {
         if (is_string($handlerDescriptor)) {
-            $handlerDescriptor = $this->container->get($handlerDescriptor);
+            $handlerDescriptor = $this->container->make($handlerDescriptor);
         }
 
         if (\is_callable($handlerDescriptor)) {

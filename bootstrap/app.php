@@ -100,6 +100,7 @@ $app->configure('app');
  * Infrastructure
  */
 $app->register(Api\Infrastructure\Bus\BusServiceProvider::class);
+$app->register(Api\Infrastructure\Persistence\PersistenceServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

@@ -52,8 +52,8 @@ class ApplicationValidatorLocator implements ValidatorLocatorInterface
                 }
 
                 $seen[] = $validatorDescription;
-                $sender = $this->container->get($validatorDescription);
-                yield $validatorDescription => $sender;
+                $validator = $this->container->get($validatorDescription);
+                yield $validatorDescription => $validator;
             }
         }
 
@@ -68,8 +68,8 @@ class ApplicationValidatorLocator implements ValidatorLocatorInterface
                     }
 
                     $seen[] = $validatorDescription;
-                    $sender = $this->container->get($validatorDescription);
-                    yield $validatorDescription => $sender;
+                    $validator = $this->container->get($validatorDescription);
+                    yield $validatorDescription => $validator;
                 }
             }
         }
