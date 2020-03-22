@@ -32,6 +32,8 @@ abstract class QueryAbstract implements \Api\Infrastructure\Bus\Interfaces\Query
 
             return $namespace . '\\' . $handler;
         }
+
+        return null;
     }
 
     public function validators(): array

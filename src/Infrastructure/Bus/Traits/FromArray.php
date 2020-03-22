@@ -6,7 +6,7 @@ namespace Api\Infrastructure\Bus\Traits;
 
 trait FromArray
 {
-    public static function fromArray(array $data = [])
+    public static final function fromArray(array $data = [])
     {
         foreach (get_object_vars($obj = new static) as $property => $default) {
             if (!array_key_exists($property, $data)) {

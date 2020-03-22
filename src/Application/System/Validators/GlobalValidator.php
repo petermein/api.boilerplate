@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Api\Application\System;
+namespace Api\Application\System\Validators;
 
 
 use Api\Infrastructure\Bus\Abstracts\ValidatorAbstract;

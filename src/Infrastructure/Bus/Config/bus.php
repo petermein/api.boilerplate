@@ -2,7 +2,7 @@
 
 use Api\Application\Example\Queries\GetAllQuery\GetAllExamplesQuery;
 use Api\Application\Example\Queries\GetAllQuery\GetAllExamplesQueryValidatorBound;
-use Api\Application\System\GlobalValidator;
+use Api\Application\System\Validators\GlobalValidator;
 use Api\Infrastructure\Bus\Interfaces\QueryInterface;
 
 return [

@@ -3,7 +3,9 @@
 
 namespace Api\Infrastructure\Persistence;
 
-class PersistenceServiceProvider
+use Illuminate\Support\ServiceProvider;
+
+class PersistenceServiceProvider extends ServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
