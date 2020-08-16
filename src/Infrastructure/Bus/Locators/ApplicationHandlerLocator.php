@@ -4,6 +4,7 @@
 namespace Api\Infrastructure\Bus\Locators;
 
 
+use Api\Common\Timing\Traits\HasTiming;
 use Api\Infrastructure\Bus\Abstracts\QueryAbstract;
 use Illuminate\Contracts\Container\Container;
 use Symfony\Component\Messenger\Envelope;
@@ -13,6 +14,8 @@ use Symfony\Component\Messenger\Stamp\ReceivedStamp;
 
 class ApplicationHandlerLocator implements HandlersLocatorInterface
 {
+    use HasTiming;
+
     /**
      * @var Container
      */
@@ -39,6 +42,7 @@ class ApplicationHandlerLocator implements HandlersLocatorInterface
      */
     public function getHandlers(Envelope $envelope): iterable
     {
+        $this->start('getHandlers');
         $seen = [];
 
         //Find via enveloper
@@ -83,6 +87,8 @@ class ApplicationHandlerLocator implements HandlersLocatorInterface
                 yield $handlerDescriptor;
             }
         }
+
+        $this->stop('getHandlers');
     }
 
     protected function retrieveHandler($handlerDescriptor)
@@ -96,21 +102,6 @@ class ApplicationHandlerLocator implements HandlersLocatorInterface
         }
 
         return $handlerDescriptor;
-    }
-
-
-    /**
-     * @param Envelope $envelope
-     * @return array
-     */
-    public static function listTypes(Envelope $envelope): array
-    {
-        $class = \get_class($envelope->getMessage());
-
-        return [$class => $class]
-            + class_parents($class)
-            + class_implements($class)
-            + ['*' => '*'];
     }
 
     /**
@@ -130,5 +121,19 @@ class ApplicationHandlerLocator implements HandlersLocatorInterface
         }
 
         return $received->getTransportName() === $expectedTransport;
+    }
+
+    /**
+     * @param Envelope $envelope
+     * @return array
+     */
+    public static function listTypes(Envelope $envelope): array
+    {
+        $class = \get_class($envelope->getMessage());
+
+        return [$class => $class]
+            + class_parents($class)
+            + class_implements($class)
+            + ['*' => '*'];
     }
 }

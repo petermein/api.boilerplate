@@ -4,6 +4,7 @@
 namespace Api\Infrastructure\Bus\Buses;
 
 
+use Api\Common\Timing\Traits\HasTiming;
 use Api\Infrastructure\Bus\Interfaces\QueryInterface;
 use Symfony\Component\Messenger\HandleTrait;
 use Symfony\Component\Messenger\MessageBusInterface;
@@ -11,6 +12,7 @@ use Symfony\Component\Messenger\MessageBusInterface;
 class QueryBus
 {
     use HandleTrait;
+    use HasTiming;
 
     public function __construct(MessageBusInterface $messageBus)
     {
@@ -24,8 +26,13 @@ class QueryBus
      */
     public function query(QueryInterface $query)
     {
-        //Wrap in an envelope?
+        $this->start('Bus handling');
 
-        return $this->handle($query);
+        //Wrap in an envelope?
+        $response = $this->handle($query);
+
+        $this->stop('Bus handling');
+
+        return $response;
     }
 }

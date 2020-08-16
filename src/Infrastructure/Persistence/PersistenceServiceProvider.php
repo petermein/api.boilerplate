@@ -31,7 +31,6 @@ class PersistenceServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //TODO: Find a way to defer only the used module
         $this->app->bind(
             \Api\Application\Example\Repositories\ExampleRepository::class,
             \Api\Infrastructure\Persistence\Repositories\Doctrine\ExampleRepository::class

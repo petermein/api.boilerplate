@@ -91,6 +91,10 @@ $app->configure('app');
 |
 */
 
+if ($app->environment('local')) {
+    $app->register(\BeyondCode\ServerTiming\ServerTimingServiceProvider::class);
+}
+
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
@@ -100,6 +104,7 @@ $app->configure('app');
  * Infrastructure
  */
 $app->register(Api\Infrastructure\Bus\BusServiceProvider::class);
+$app->register(Api\Application\ApplicationServiceProvider::class);
 $app->register(Api\Infrastructure\Persistence\PersistenceServiceProvider::class);
 
 /*
@@ -119,7 +124,9 @@ $app->register(Api\Infrastructure\Persistence\PersistenceServiceProvider::class)
 $app->router->group([
     'prefix' => 'api',
     'namespace' => 'Api\UI\Api\REST',
-    'middleware' => []
+    'middleware' => [
+        \BeyondCode\ServerTiming\Middleware\ServerTimingMiddleware::class
+    ]
 ], function ($router) {
     include(__DIR__ . '/../src/UI/Api/REST/routes.v1.php');
 });

@@ -4,34 +4,21 @@ namespace Api\UI\Api\REST\Example;
 
 use Api\Application\Example\Models\ExampleListDto;
 use Api\Application\Example\Queries\GetAllQuery\GetAllExamplesQuery;
-use Api\Infrastructure\Bus\Buses\QueryBus;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use Api\UI\Api\REST\BaseController;
 
-class ExampleController extends Controller
+class ExampleController extends BaseController
 {
-    /**
-     * @var QueryBus
-     */
-    private $queryBus;
+
 
     /**
-     * ExampleController constructor.
-     * @param QueryBus $queryBus
-     */
-    public function __construct(QueryBus $queryBus)
-    {
-        $this->queryBus = $queryBus;
-    }
-
-    /**
+     * @param GetAllExamplesQuery $request
      * @Incoming(schema="Api\Application\Example\Queries\GetAllQuery\GetAllExamplesQuery")
      * @Outgoing(code=201, schema="Acme\Model\Message")
      */
-    public function getAll(Request $request)
+    public function getAll(GetAllExamplesQuery $request)
     {
         /** @var ExampleListDto $response */
-        $response = $this->queryBus->query((GetAllExamplesQuery::fromArray($request->all())));
+        $response = $this->query($request);
 
         return response()->json($response, $code = 200);
     }
