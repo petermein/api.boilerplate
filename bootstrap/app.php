@@ -23,7 +23,8 @@ $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
 
-// $app->withFacades();
+//Cost 2ms
+$app->withFacades();
 
 // $app->withEloquent();
 
@@ -93,7 +94,16 @@ $app->configure('app');
 
 if ($app->environment('local')) {
     $app->register(\BeyondCode\ServerTiming\ServerTimingServiceProvider::class);
+    $app->configure('swagger-lume');
+    $app->register(\SwaggerLume\ServiceProvider::class);
 }
+
+//GraphQL cost 6ms
+//TODO only load on graphql path and console
+//Via check via path regex or header setting in i.e. kong
+$app->configure('graphql');
+$app->register(Rebing\GraphQL\GraphQLLumenServiceProvider::class);
+
 
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
@@ -120,15 +130,25 @@ $app->register(Api\Infrastructure\Persistence\PersistenceServiceProvider::class)
 
 /**
  * REST
+ * TODO: only load on rest calls
  */
 $app->router->group([
     'prefix' => 'api',
-    'namespace' => 'Api\UI\Api\REST',
+    'namespace' => 'Api\Presentation\Api\REST',
     'middleware' => [
         \BeyondCode\ServerTiming\Middleware\ServerTimingMiddleware::class
     ]
 ], function ($router) {
-    include(__DIR__ . '/../src/UI/Api/REST/routes.v1.php');
+    include(__DIR__ . '/../src/Presentation/Api/REST/routes.v1.php');
 });
+
+$app->router->group([
+    'middleware' => [
+        \BeyondCode\ServerTiming\Middleware\ServerTimingMiddleware::class
+    ]
+], function ($router) {
+    include(__DIR__ . '/../src/Presentation/routes.php');
+});
+
 
 return $app;

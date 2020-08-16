@@ -15,5 +15,7 @@ class ExampleRepository implements IExampleRepository
         // get from database
 
         // map to domain model
+
+        return null;
     }
 }

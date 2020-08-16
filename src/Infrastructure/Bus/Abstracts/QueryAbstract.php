@@ -4,12 +4,8 @@
 namespace Api\Infrastructure\Bus\Abstracts;
 
 
-use Api\Infrastructure\Bus\Traits\FromArray;
-
 abstract class QueryAbstract implements \Api\Infrastructure\Bus\Interfaces\QueryInterface
 {
-    use FromArray;
-
     protected $providesHandler = true;
     protected $providesValidators = true;
     protected $providesSenders = true;
