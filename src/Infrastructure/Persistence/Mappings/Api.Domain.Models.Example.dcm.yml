@@ -1,0 +1,13 @@
+Api\Domain\Models\Example:
+  type: entity
+  table: examples
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    title:
+      type: string
+    name:
+      type: string

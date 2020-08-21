@@ -1,5 +1,8 @@
 <?php
 
+declare(strict_types = 1);
+
+
 use Api\Application\Example\Queries\GetAllQuery\GetAllExamplesQuery;
 use Api\Application\Example\Queries\GetAllQuery\GetAllExamplesQueryValidatorBound;
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 
 namespace Api\Infrastructure\Persistence\Repositories\Doctrine;
 
@@ -7,15 +9,17 @@ namespace Api\Infrastructure\Persistence\Repositories\Doctrine;
 use Api\Application\Example\Repositories\ExampleRepository as IExampleRepository;
 use Api\Domain\Models\Example;
 
-class ExampleRepository implements IExampleRepository
+class ExampleRepository extends BaseDoctrineRepository implements IExampleRepository
 {
-
     public function find(int $id): ?Example
     {
-        // get from database
+        $object = $this->genericRepository->find($id);
 
-        // map to domain model
+        return $object;
+    }
 
-        return null;
+    public function save(Example $example): void
+    {
+        $this->entityManager->persist($example);
     }
 }

@@ -4,3 +4,6 @@ Homestead.json
 Homestead.yaml
 .env
 .phpunit.result.cache
+*.sqlite
+storage/clockwork
+.php_cs.cache

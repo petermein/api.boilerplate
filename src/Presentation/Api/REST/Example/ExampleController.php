@@ -1,4 +1,7 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types = 1);
+ declare(strict_types=1);
 
 namespace Api\Presentation\Api\REST\Example;
 

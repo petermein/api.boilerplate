@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 
 namespace Api\Infrastructure\Persistence;
 
@@ -31,10 +33,15 @@ class PersistenceServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(
-            \Api\Application\Example\Repositories\ExampleRepository::class,
-            \Api\Infrastructure\Persistence\Repositories\Doctrine\ExampleRepository::class
-        );
+
+
+        //Example
+        $this->app->bind(\Api\Application\Example\Repositories\ExampleRepository::class, function ($app) {
+            return new \Api\Infrastructure\Persistence\Repositories\Doctrine\ExampleRepository(
+                $app['em'],
+                $app['em']->getRepository(\Api\Domain\Models\Example::class)
+            );
+        });
     }
 
     /**

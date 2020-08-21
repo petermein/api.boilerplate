@@ -41,12 +41,12 @@ $app->withFacades();
 
 $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
-    App\Exceptions\Handler::class
+    Api\Application\Exceptions\Handler::class
 );
 
 $app->singleton(
     Illuminate\Contracts\Console\Kernel::class,
-    App\Console\Kernel::class
+    Api\Presentation\Console\Kernel::class
 );
 
 /*
@@ -92,30 +92,29 @@ $app->configure('app');
 |
 */
 
+
 if ($app->environment('local')) {
-    $app->register(\BeyondCode\ServerTiming\ServerTimingServiceProvider::class);
-    $app->configure('swagger-lume');
-    $app->register(\SwaggerLume\ServiceProvider::class);
+    //Timing plugins, for speed
+//    $app->register(\BeyondCode\ServerTiming\ServerTimingServiceProvider::class);
+//    $app->register(Clockwork\Support\Lumen\ClockworkServiceProvider::class);
+
+//    $app->configure('swagger-lume');
+//    $app->register(\SwaggerLume\ServiceProvider::class);
 }
 
-//GraphQL cost 6ms
-//TODO only load on graphql path and console
-//Via check via path regex or header setting in i.e. kong
-$app->configure('graphql');
-$app->register(Rebing\GraphQL\GraphQLLumenServiceProvider::class);
-
-
-// $app->register(App\Providers\AppServiceProvider::class);
-// $app->register(App\Providers\AuthServiceProvider::class);
-// $app->register(App\Providers\EventServiceProvider::class);
-
+$app->register(LaravelDoctrine\ORM\DoctrineServiceProvider::class);
 
 /**
  * Infrastructure
  */
 $app->register(Api\Infrastructure\Bus\BusServiceProvider::class);
-$app->register(Api\Application\ApplicationServiceProvider::class);
 $app->register(Api\Infrastructure\Persistence\PersistenceServiceProvider::class);
+
+/**
+ * Application
+ */
+$app->register(Api\Application\ApplicationServiceProvider::class);
+
 
 /*
 |--------------------------------------------------------------------------
@@ -129,26 +128,22 @@ $app->register(Api\Infrastructure\Persistence\PersistenceServiceProvider::class)
 */
 
 /**
+ * GraphQL
+ */
+$app->register(Api\Presentation\Api\GraphQL\GraphQLServiceProvider::class);
+
+/**
  * REST
- * TODO: only load on rest calls
+ */
+$app->register(Api\Presentation\Api\REST\RestServiceProvider::class);
+
+/**
+ * Root
  */
 $app->router->group([
-    'prefix' => 'api',
-    'namespace' => 'Api\Presentation\Api\REST',
-    'middleware' => [
-        \BeyondCode\ServerTiming\Middleware\ServerTimingMiddleware::class
-    ]
-], function ($router) {
-    include(__DIR__ . '/../src/Presentation/Api/REST/routes.v1.php');
-});
-
-$app->router->group([
-    'middleware' => [
-        \BeyondCode\ServerTiming\Middleware\ServerTimingMiddleware::class
-    ]
+    'middleware' => []
 ], function ($router) {
     include(__DIR__ . '/../src/Presentation/routes.php');
 });
-
 
 return $app;

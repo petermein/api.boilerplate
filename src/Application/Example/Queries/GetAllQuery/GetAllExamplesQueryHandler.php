@@ -1,6 +1,6 @@
 <?php
-declare(strict_types=1);
 
+declare(strict_types=1);
 
 namespace Api\Application\Example\Queries\GetAllQuery;
 
@@ -32,8 +32,11 @@ class GetAllExamplesQueryHandler implements HandlerInterface
     public function __invoke(GetAllExamplesQuery $getAllQuery): ExampleListDto
     {
         $dto = new ExampleListDto();
+//        phpinfo();
+//        exit;
+        $example = $this->exampleRepository->find($getAllQuery->id);
 
-        $dto->id = $getAllQuery->id;
+        $dto->id = $example->id;
 
         return $dto;
     }

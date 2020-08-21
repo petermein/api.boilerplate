@@ -1,6 +1,9 @@
 <?php
 
-namespace App\Exceptions;
+declare(strict_types = 1);
+
+
+namespace Api\Application\Exceptions;
 
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
