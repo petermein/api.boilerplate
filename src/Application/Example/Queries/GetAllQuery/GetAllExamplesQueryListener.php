@@ -1,17 +1,18 @@
 <?php
 
-declare(strict_types = 1);
-
 declare(strict_types=1);
 
 
 namespace Api\Application\Example\Queries\GetAllQuery;
 
-
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\Transport\Sender\SenderInterface;
 
-class GetAllExamplesQueryListener implements SenderInterface
+/**
+ * Class GetAllExamplesQueryListener
+ * @package Api\Application\Example\Queries\GetAllQuery
+ */
+final class GetAllExamplesQueryListener implements SenderInterface
 {
     public function __construct()
     {

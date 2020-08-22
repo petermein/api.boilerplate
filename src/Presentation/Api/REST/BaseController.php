@@ -1,16 +1,14 @@
 <?php
 
-declare(strict_types = 1);
-
+declare(strict_types=1);
 
 
 namespace Api\Presentation\Api\REST;
 
+use Api\Common\Bus\Buses\QueryBus;
+use Api\Common\Bus\Interfaces\QueryInterface;
 
-use Api\Infrastructure\Bus\Abstracts\QueryAbstract;
-use Api\Infrastructure\Bus\Buses\QueryBus;
-
-class BaseController
+abstract class BaseController
 {
     /**
      * @var QueryBus
@@ -19,14 +17,13 @@ class BaseController
 
     /**
      * ExampleController constructor.
-     * @param QueryBus $queryBus
      */
     public function __construct()
     {
         $this->queryBus = app(QueryBus::class);
     }
 
-    public function query(QueryAbstract $abstract)
+    final public function query(QueryInterface $abstract)
     {
         return $this->queryBus->query($abstract);
     }

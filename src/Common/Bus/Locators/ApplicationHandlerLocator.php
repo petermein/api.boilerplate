@@ -1,39 +1,39 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 
+namespace Api\Common\Bus\Locators;
 
-namespace Api\Infrastructure\Bus\Locators;
-
-
-use Api\Common\Timing\Traits\HasTiming;
-use Api\Infrastructure\Bus\Abstracts\QueryAbstract;
+use Api\Common\Bus\Abstracts\QueryAbstract;
 use Illuminate\Contracts\Container\Container;
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\Handler\HandlerDescriptor;
 use Symfony\Component\Messenger\Handler\HandlersLocatorInterface;
 use Symfony\Component\Messenger\Stamp\ReceivedStamp;
 
-class ApplicationHandlerLocator implements HandlersLocatorInterface
+/**
+ * Class ApplicationHandlerLocator
+ * @package Api\Common\Bus\Locators
+ */
+final class ApplicationHandlerLocator implements HandlersLocatorInterface
 {
-    use HasTiming;
-
     /**
      * @var Container
      */
     private Container $container;
 
     /**
-     * @var array|\callable[][]|\Symfony\Component\Messenger\Handler\HandlerDescriptor[][]
+     * @var iterable
      */
-    private array $handlers;
+    private iterable $handlers;
 
     /**
+     * ApplicationHandlerLocator constructor.
      * @param Container $container
-     * @param HandlerDescriptor[][]|callable[][] $handlers
+     * @param iterable $handlers
      */
-    public function __construct(Container $container, array $handlers)
+    public function __construct(Container $container, iterable $handlers)
     {
         $this->container = $container;
         $this->handlers = $handlers;
@@ -45,7 +45,6 @@ class ApplicationHandlerLocator implements HandlersLocatorInterface
      */
     public function getHandlers(Envelope $envelope): iterable
     {
-        $this->start('getHandlers');
         $seen = [];
 
         //Find via enveloper
@@ -90,11 +89,9 @@ class ApplicationHandlerLocator implements HandlersLocatorInterface
                 yield $handlerDescriptor;
             }
         }
-
-        $this->stop('getHandlers');
     }
 
-    protected function retrieveHandler($handlerDescriptor)
+    private function retrieveHandler($handlerDescriptor)
     {
         if (is_string($handlerDescriptor)) {
             $handlerDescriptor = $this->container->make($handlerDescriptor);
@@ -135,8 +132,8 @@ class ApplicationHandlerLocator implements HandlersLocatorInterface
         $class = \get_class($envelope->getMessage());
 
         return [$class => $class]
-            + class_parents($class)
-            + class_implements($class)
+            + \Safe\class_parents($class)
+            + \Safe\class_implements($class)
             + ['*' => '*'];
     }
 }

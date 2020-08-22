@@ -1,19 +1,20 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 
+namespace Api\Common\Bus\Abstracts;
 
-namespace Api\Infrastructure\Bus\Abstracts;
+use Api\Common\Bus\Interfaces\QueryInterface;
+use Spatie\DataTransferObject\DataTransferObject;
 
-
-abstract class QueryAbstract implements \Api\Infrastructure\Bus\Interfaces\QueryInterface
+abstract class QueryAbstract extends DataTransferObject implements QueryInterface
 {
     protected $providesHandler = true;
     protected $providesValidators = true;
     protected $providesSenders = true;
 
-    public function getData(): array
+    final public function getData(): array
     {
         //Create an array from all public variables
         //Remove null values for validation
@@ -53,6 +54,4 @@ abstract class QueryAbstract implements \Api\Infrastructure\Bus\Interfaces\Query
     {
         return [];
     }
-
-
 }

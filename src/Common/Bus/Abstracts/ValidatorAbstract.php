@@ -1,13 +1,11 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 
+namespace Api\Common\Bus\Abstracts;
 
-namespace Api\Infrastructure\Bus\Abstracts;
-
-
-abstract class ValidatorAbstract implements \Api\Infrastructure\Bus\Interfaces\ValidatorInterface
+abstract class ValidatorAbstract implements \Api\Common\Bus\Interfaces\ValidatorInterface
 {
     public function rules(): array
     {

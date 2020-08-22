@@ -1,13 +1,13 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Api\Infrastructure\Persistence\Repositories\Doctrine;
-
 
 use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
-class BaseDoctrineRepository
+abstract class BaseDoctrineRepository
 {
     /**
      * @var ObjectRepository

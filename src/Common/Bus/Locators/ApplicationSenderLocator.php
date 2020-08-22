@@ -1,21 +1,22 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 
+namespace Api\Common\Bus\Locators;
 
-namespace Api\Infrastructure\Bus\Locators;
-
-
-use Api\Infrastructure\Bus\Abstracts\QueryAbstract;
+use Api\Common\Bus\Abstracts\QueryAbstract;
 use Illuminate\Contracts\Container\Container;
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\Exception\RuntimeException;
-use Symfony\Component\Messenger\Handler\HandlerDescriptor;
 use Symfony\Component\Messenger\Handler\HandlersLocator;
 use Symfony\Component\Messenger\Transport\Sender\SendersLocatorInterface;
 
-class ApplicationSenderLocator implements SendersLocatorInterface
+/**
+ * Class ApplicationSenderLocator
+ * @package Api\Common\Bus\Locators
+ */
+final class ApplicationSenderLocator implements SendersLocatorInterface
 {
     /**
      * @var Container
@@ -23,15 +24,16 @@ class ApplicationSenderLocator implements SendersLocatorInterface
     private Container $container;
 
     /**
-     * @var array
+     * @var iterable
      */
-    private array $senders;
+    private iterable $senders;
 
     /**
+     * ApplicationSenderLocator constructor.
      * @param Container $container
-     * @param HandlerDescriptor[][]|callable[][] $handlers
+     * @param iterable $senders
      */
-    public function __construct(Container $container, array $senders)
+    public function __construct(Container $container, iterable $senders)
     {
         $this->container = $container;
         $this->senders = $senders;
@@ -40,6 +42,7 @@ class ApplicationSenderLocator implements SendersLocatorInterface
     /**
      * @param Envelope $envelope
      * @return iterable
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function getSenders(Envelope $envelope): iterable
     {
@@ -53,10 +56,11 @@ class ApplicationSenderLocator implements SendersLocatorInterface
         //Found a handler description in the model
         foreach ($senderDescriptions ?? [] as $senderAlias) {
             if (!\in_array($senderAlias, $seen, true)) {
-
                 if (!$this->container->make($senderAlias)) {
-                    throw new RuntimeException(sprintf('Invalid senders configuration: sender "%s" is not in the senders locator.',
-                        $senderAlias));
+                    throw new RuntimeException(\Safe\sprintf(
+                        'Invalid senders configuration: sender "%s" is not in the senders locator.',
+                        $senderAlias
+                    ));
                 }
 
                 $seen[] = $senderAlias;
@@ -68,12 +72,12 @@ class ApplicationSenderLocator implements SendersLocatorInterface
         //Find via binding
         foreach (HandlersLocator::listTypes($envelope) as $type) {
             foreach ($this->senders[$type] ?? [] as $senderAlias) {
-
                 if (!\in_array($senderAlias, $seen, true)) {
-
                     if (!$this->container->make($senderAlias)) {
-                        throw new RuntimeException(sprintf('Invalid senders configuration: sender "%s" is not in the senders locator.',
-                            $senderAlias));
+                        throw new RuntimeException(\Safe\sprintf(
+                            'Invalid senders configuration: sender "%s" is not in the senders locator.',
+                            $senderAlias
+                        ));
                     }
 
                     $seen[] = $senderAlias;

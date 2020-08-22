@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a42689d39b2d0d381afa0a34f6ce9586",
+    "content-hash": "e38eb257e5dc83de90bf74dcbba9138a",
     "packages": [
         {
             "name": "brick/math",
@@ -3673,6 +3673,63 @@
             "time": "2020-07-02T16:02:34+00:00"
         },
         {
+            "name": "spatie/data-transfer-object",
+            "version": "2.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/data-transfer-object.git",
+                "reference": "875266070431a0ca50584d07996e76065e31e78e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/data-transfer-object/zipball/875266070431a0ca50584d07996e76065e31e78e",
+                "reference": "875266070431a0ca50584d07996e76065e31e78e",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.16",
+                "larapack/dd": "^1.0",
+                "phpunit/phpunit": "^7.0"
+            },
+            "suggest": {
+                "phpstan/phpstan": "Take advantage of checkUninitializedProperties with \\Spatie\\DataTransferObject\\PHPstan\\PropertiesAreAlwaysInitializedExtension"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\DataTransferObject\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brent Roose",
+                    "email": "brent@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Data transfer objects with batteries included",
+            "homepage": "https://github.com/spatie/data-transfer-object",
+            "keywords": [
+                "data-transfer-object",
+                "spatie"
+            ],
+            "funding": [
+                {
+                    "url": "https://www.patreon.com/spatie",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2020-08-19T13:28:17+00:00"
+        },
+        {
             "name": "swagger-api/swagger-ui",
             "version": "v3.32.4",
             "source": {
@@ -6299,68 +6356,6 @@
     ],
     "packages-dev": [
         {
-            "name": "beyondcode/laravel-server-timing",
-            "version": "1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/beyondcode/laravel-server-timing.git",
-                "reference": "6af1fe1095250f938a42b873ea97d29f50f23b97"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/beyondcode/laravel-server-timing/zipball/6af1fe1095250f938a42b873ea97d29f50f23b97",
-                "reference": "6af1fe1095250f938a42b873ea97d29f50f23b97",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "5.8.*|^6.0|^7.0",
-                "php": "^7.2",
-                "symfony/stopwatch": "^4.0|^5.0"
-            },
-            "require-dev": {
-                "orchestra/testbench": "^4.6",
-                "phpunit/phpunit": "^8.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "BeyondCode\\ServerTiming\\ServerTimingServiceProvider"
-                    ],
-                    "aliases": {
-                        "Stopwatch": "BeyondCode\\ServerTiming\\Facades\\ServerTiming"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "BeyondCode\\ServerTiming\\": "src"
-                },
-                "files": [
-                    "src/helpers.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Marcel Pociot",
-                    "email": "marcel@beyondco.de",
-                    "homepage": "https://beyondcode.de",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Add Server-Timing header information from within your Laravel apps.",
-            "homepage": "https://github.com/beyondcode/laravel-server-timing",
-            "keywords": [
-                "beyondcode",
-                "laravel-server-timing"
-            ],
-            "time": "2020-02-11T08:50:00+00:00"
-        },
-        {
             "name": "composer/ca-bundle",
             "version": "1.2.7",
             "source": {
@@ -8143,6 +8138,57 @@
             "time": "2020-08-19T08:13:30+00:00"
         },
         {
+            "name": "phpstan/phpstan-deprecation-rules",
+            "version": "0.12.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpstan/phpstan-deprecation-rules.git",
+                "reference": "bfabc6a1b4617fbcbff43f03a4c04eae9bafae21"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpstan/phpstan-deprecation-rules/zipball/bfabc6a1b4617fbcbff43f03a4c04eae9bafae21",
+                "reference": "bfabc6a1b4617fbcbff43f03a4c04eae9bafae21",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1 || ^8.0",
+                "phpstan/phpstan": "^0.12.26"
+            },
+            "require-dev": {
+                "consistence/coding-standard": "^3.0.1",
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
+                "ergebnis/composer-normalize": "^2.0.2",
+                "jakub-onderka/php-parallel-lint": "^1.0",
+                "phing/phing": "^2.16.0",
+                "phpstan/phpstan-phpunit": "^0.12",
+                "phpunit/phpunit": "^7.0",
+                "slevomat/coding-standard": "^4.5.2"
+            },
+            "type": "phpstan-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.12-dev"
+                },
+                "phpstan": {
+                    "includes": [
+                        "rules.neon"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PHPStan\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "PHPStan rules for detecting usage of deprecated classes, methods, properties, constants and traits.",
+            "time": "2020-07-21T14:52:30+00:00"
+        },
+        {
             "name": "phpstan/phpstan-phpunit",
             "version": "0.12.16",
             "source": {
@@ -9565,6 +9611,51 @@
             "time": "2020-07-07T18:42:57+00:00"
         },
         {
+            "name": "sensiolabs-de/deptrac-shim",
+            "version": "0.8.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sensiolabs-de/deptrac-shim.git",
+                "reference": "17eed193ef4b206710d1a485085d0d0dd74e6c70"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sensiolabs-de/deptrac-shim/zipball/17eed193ef4b206710d1a485085d0d0dd74e6c70",
+                "reference": "17eed193ef4b206710d1a485085d0d0dd74e6c70",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-tokenizer": "*",
+                "ext-zlib": "*",
+                "php": "^7.2"
+            },
+            "replace": {
+                "sensiolabs-de/astrunner": "^1.0",
+                "sensiolabs-de/deptrac": "self.version"
+            },
+            "suggest": {
+                "ext-dom": "For using the JUnit output formatter"
+            },
+            "bin": [
+                "deptrac"
+            ],
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Simon Mönch",
+                    "email": "simon.moench@sensiolabs.de",
+                    "role": "maintainer"
+                }
+            ],
+            "description": "deptrac phar distribution",
+            "time": "2020-07-24T13:37:07+00:00"
+        },
+        {
             "name": "squizlabs/php_codesniffer",
             "version": "3.5.6",
             "source": {
@@ -10531,16 +10622,16 @@
         },
         {
             "name": "symplify/auto-bind-parameter",
-            "version": "v8.2.9",
+            "version": "v8.2.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/auto-bind-parameter.git",
-                "reference": "f171e081fd214561649920dc8f7274f1d6343b74"
+                "reference": "37480061fb4e54a89794f519cb91a1453595e624"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/auto-bind-parameter/zipball/f171e081fd214561649920dc8f7274f1d6343b74",
-                "reference": "f171e081fd214561649920dc8f7274f1d6343b74",
+                "url": "https://api.github.com/repos/symplify/auto-bind-parameter/zipball/37480061fb4e54a89794f519cb91a1453595e624",
+                "reference": "37480061fb4e54a89794f519cb91a1453595e624",
                 "shasum": ""
             },
             "require": {
@@ -10551,7 +10642,7 @@
             },
             "require-dev": {
                 "phpunit/phpunit": "^8.5|^9.0",
-                "symplify/package-builder": "^8.2.9"
+                "symplify/package-builder": "^8.2.10"
             },
             "type": "library",
             "extra": {
@@ -10575,27 +10666,27 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-08-18T16:19:10+00:00"
+            "time": "2020-08-22T18:06:03+00:00"
         },
         {
             "name": "symplify/autowire-array-parameter",
-            "version": "v8.2.9",
+            "version": "v8.2.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/autowire-array-parameter.git",
-                "reference": "19f4d9c38131475fbd648a8d3d165203f81a99e8"
+                "reference": "a159bd7a2517a3f59795c972d4c65f96e4453436"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/autowire-array-parameter/zipball/19f4d9c38131475fbd648a8d3d165203f81a99e8",
-                "reference": "19f4d9c38131475fbd648a8d3d165203f81a99e8",
+                "url": "https://api.github.com/repos/symplify/autowire-array-parameter/zipball/a159bd7a2517a3f59795c972d4c65f96e4453436",
+                "reference": "a159bd7a2517a3f59795c972d4c65f96e4453436",
                 "shasum": ""
             },
             "require": {
                 "nette/utils": "^3.0",
                 "php": "^7.2",
                 "symfony/dependency-injection": "^4.4|^5.0",
-                "symplify/package-builder": "^8.2.9"
+                "symplify/package-builder": "^8.2.10"
             },
             "require-dev": {
                 "phpunit/phpunit": "^8.5|^9.0"
@@ -10622,20 +10713,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-08-18T16:19:10+00:00"
+            "time": "2020-08-22T18:06:03+00:00"
         },
         {
             "name": "symplify/console-color-diff",
-            "version": "v8.2.9",
+            "version": "v8.2.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/console-color-diff.git",
-                "reference": "382d7050ce5a809a6a54f3371e161c7e3e4b46d9"
+                "reference": "047e40c96e59dfebcc452a1c79bb819758b3b2cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/console-color-diff/zipball/382d7050ce5a809a6a54f3371e161c7e3e4b46d9",
-                "reference": "382d7050ce5a809a6a54f3371e161c7e3e4b46d9",
+                "url": "https://api.github.com/repos/symplify/console-color-diff/zipball/047e40c96e59dfebcc452a1c79bb819758b3b2cb",
+                "reference": "047e40c96e59dfebcc452a1c79bb819758b3b2cb",
                 "shasum": ""
             },
             "require": {
@@ -10645,7 +10736,7 @@
                 "symfony/console": "^4.4|^5.0",
                 "symfony/dependency-injection": "^4.4|^5.0",
                 "symfony/http-kernel": "^4.4|^5.0",
-                "symplify/package-builder": "^8.2.9"
+                "symplify/package-builder": "^8.2.10"
             },
             "require-dev": {
                 "phpunit/phpunit": "^8.5|^9.0"
@@ -10672,28 +10763,28 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-08-18T16:19:10+00:00"
+            "time": "2020-08-22T18:06:03+00:00"
         },
         {
             "name": "symplify/easy-testing",
-            "version": "v8.2.9",
+            "version": "v8.2.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/easy-testing.git",
-                "reference": "674a2cb7fa6906a84a76af840d5864649327f397"
+                "reference": "c2b22bc52a0914d94ce5949e8c1144de42671954"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/easy-testing/zipball/674a2cb7fa6906a84a76af840d5864649327f397",
-                "reference": "674a2cb7fa6906a84a76af840d5864649327f397",
+                "url": "https://api.github.com/repos/symplify/easy-testing/zipball/c2b22bc52a0914d94ce5949e8c1144de42671954",
+                "reference": "c2b22bc52a0914d94ce5949e8c1144de42671954",
                 "shasum": ""
             },
             "require": {
                 "nette/utils": "^3.0",
                 "php": "^7.2",
                 "symfony/finder": "^4.4|^5.0",
-                "symplify/package-builder": "^8.2.9",
-                "symplify/smart-file-system": "^8.2.9"
+                "symplify/package-builder": "^8.2.10",
+                "symplify/smart-file-system": "^8.2.10"
             },
             "require-dev": {
                 "phpunit/phpunit": "^8.5|^9.0"
@@ -10720,20 +10811,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-08-18T16:19:10+00:00"
+            "time": "2020-08-22T18:06:03+00:00"
         },
         {
             "name": "symplify/package-builder",
-            "version": "v8.2.9",
+            "version": "v8.2.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/package-builder.git",
-                "reference": "cd8368ae350b540d87f021da39522955472b933d"
+                "reference": "9a4bfc4638a86a05c201377b6863623d2a3de76d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/package-builder/zipball/cd8368ae350b540d87f021da39522955472b933d",
-                "reference": "cd8368ae350b540d87f021da39522955472b933d",
+                "url": "https://api.github.com/repos/symplify/package-builder/zipball/9a4bfc4638a86a05c201377b6863623d2a3de76d",
+                "reference": "9a4bfc4638a86a05c201377b6863623d2a3de76d",
                 "shasum": ""
             },
             "require": {
@@ -10772,20 +10863,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-08-07T20:33:15+00:00"
+            "time": "2020-08-19T14:13:41+00:00"
         },
         {
             "name": "symplify/set-config-resolver",
-            "version": "v8.2.9",
+            "version": "v8.2.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/set-config-resolver.git",
-                "reference": "fd46707dc9e36c362fe02fa299335e5c0cbd5ad6"
+                "reference": "7850c4aa03b993b3a89ac65ac27927dd6c7bebd5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/set-config-resolver/zipball/fd46707dc9e36c362fe02fa299335e5c0cbd5ad6",
-                "reference": "fd46707dc9e36c362fe02fa299335e5c0cbd5ad6",
+                "url": "https://api.github.com/repos/symplify/set-config-resolver/zipball/7850c4aa03b993b3a89ac65ac27927dd6c7bebd5",
+                "reference": "7850c4aa03b993b3a89ac65ac27927dd6c7bebd5",
                 "shasum": ""
             },
             "require": {
@@ -10797,7 +10888,7 @@
                 "symfony/filesystem": "^4.4|^5.0",
                 "symfony/finder": "^4.4|^5.0",
                 "symfony/yaml": "^4.4|^5.0",
-                "symplify/smart-file-system": "^8.2.9"
+                "symplify/smart-file-system": "^8.2.10"
             },
             "require-dev": {
                 "phpunit/phpunit": "^8.5|^9.0"
@@ -10824,20 +10915,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-08-18T16:19:10+00:00"
+            "time": "2020-08-22T18:06:03+00:00"
         },
         {
             "name": "symplify/smart-file-system",
-            "version": "v8.2.9",
+            "version": "v8.2.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/smart-file-system.git",
-                "reference": "b920ffb52dc0bab0766249dc089ad875dba3467a"
+                "reference": "c6b71aac78383fbde75037ee59768cc690834e15"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/smart-file-system/zipball/b920ffb52dc0bab0766249dc089ad875dba3467a",
-                "reference": "b920ffb52dc0bab0766249dc089ad875dba3467a",
+                "url": "https://api.github.com/repos/symplify/smart-file-system/zipball/c6b71aac78383fbde75037ee59768cc690834e15",
+                "reference": "c6b71aac78383fbde75037ee59768cc690834e15",
                 "shasum": ""
             },
             "require": {
@@ -10872,7 +10963,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-08-07T20:33:15+00:00"
+            "time": "2020-08-12T12:15:00+00:00"
         },
         {
             "name": "thecodingmachine/phpstan-safe-rule",

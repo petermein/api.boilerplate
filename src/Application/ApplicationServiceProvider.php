@@ -4,30 +4,20 @@ declare(strict_types=1);
 
 namespace Api\Application;
 
-
 use Api\Application\System\Interfaces\HasRequestMapping;
-use Api\Infrastructure\Bus\Abstracts\QueryAbstract;
-use BeyondCode\ServerTiming\ServerTiming;
+use Api\Common\Bus\Abstracts\QueryAbstract;
 use Illuminate\Support\ServiceProvider;
 
-class ApplicationServiceProvider extends ServiceProvider
+/**
+ * Class ApplicationServiceProvider
+ * @package Api\Application
+ */
+final class ApplicationServiceProvider extends ServiceProvider
 {
-    /**
-     * @var ServerTiming
-     */
-    private $timing;
-
-    public function __construct($app)
-    {
-        parent::__construct($app);
-        $this->timing = app(ServerTiming::class);
-    }
-
     public function register()
     {
+        //TODO: rework with dto
         $this->app->resolving(QueryAbstract::class, function ($object, $app) {
-
-            $this->timing->start('Query building');
 
             $data = $app->request->all();
 
@@ -45,12 +35,13 @@ class ApplicationServiceProvider extends ServiceProvider
 
                 //TODO build strict property type casting, with validation errors
                 if ($propertyType !== null) {
-                    if (!$type->allowsNull() && !isset($data[$propertyName])) {
+                    if (!$type->allowsNull() && !array_key_exists($propertyName, $data)) {
                         //Validation issue
                         continue;
                     }
 
                     //7.4: getName undocumented, __toString deprecated
+                    /** @phpstan-ignore-next-line */
                     if ($type->getName() === 'int') {
                         $object->{$propertyName} = (int)$data[$propertyName];
                     }
@@ -63,7 +54,6 @@ class ApplicationServiceProvider extends ServiceProvider
                 call_user_func([$object, 'requestMapping'], $app->request);
             }
 
-            $this->timing->stop('Query building');
 
             return $object;
         });

@@ -1,15 +1,13 @@
 <?php
 
-declare(strict_types = 1);
-
+declare(strict_types=1);
 
 
 namespace Api\Application\System\Validators;
 
+use Api\Common\Bus\Abstracts\ValidatorAbstract;
 
-use Api\Infrastructure\Bus\Abstracts\ValidatorAbstract;
-
-class GlobalValidator extends ValidatorAbstract
+final class GlobalValidator extends ValidatorAbstract
 {
     public function rules(): array
     {

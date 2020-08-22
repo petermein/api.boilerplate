@@ -1,41 +1,48 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 
+namespace Api\Common\Bus\Locators;
 
-namespace Api\Infrastructure\Bus\Locators;
-
-
-use Api\Infrastructure\Bus\Interfaces\QueryInterface;
-use Api\Infrastructure\Bus\Interfaces\ValidatorLocatorInterface;
+use Api\Common\Bus\Interfaces\QueryInterface;
+use Api\Common\Bus\Interfaces\ValidatorLocatorInterface;
 use Illuminate\Contracts\Container\Container;
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\Exception\RuntimeException;
 use Symfony\Component\Messenger\Handler\HandlersLocator;
 
-class ApplicationValidatorLocator implements ValidatorLocatorInterface
+/**
+ * Class ApplicationValidatorLocator
+ * @package Api\Common\Bus\Locators
+ */
+final class ApplicationValidatorLocator implements ValidatorLocatorInterface
 {
     /**
      * @var Container
      */
-    private $container;
+    private Container $container;
     /**
-     * @var array
+     * @var iterable
      */
-    private $validators;
+    private iterable $validators;
 
     /**
      * ApplicationValidatorLocator constructor.
      * @param Container $container
+     * @param array $validators
      */
-    public function __construct(Container $container, array $validators)
+    public function __construct(Container $container, iterable $validators)
     {
         $this->container = $container;
-        //TODO implement
         $this->validators = $validators;
     }
 
+    /**
+     * @param Envelope $envelope
+     * @return iterable
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
     public function getValidators(Envelope $envelope): iterable
     {
         $seen = [];
@@ -48,10 +55,11 @@ class ApplicationValidatorLocator implements ValidatorLocatorInterface
         //Loop over found a validations description in the model, run over validators
         foreach ($validatorDescriptions ?? [] as $validatorDescription) {
             if (!\in_array($validatorDescription, $seen, true)) {
-
                 if (!$this->container->make($validatorDescription)) {
-                    throw new RuntimeException(sprintf('Invalid validator configuration: validator "%s" is not in the validator locator.',
-                        $validatorDescription));
+                    throw new RuntimeException(\Safe\sprintf(
+                        'Invalid validator configuration: validator "%s" is not in the validator locator.',
+                        $validatorDescription
+                    ));
                 }
 
                 $seen[] = $validatorDescription;
@@ -64,10 +72,11 @@ class ApplicationValidatorLocator implements ValidatorLocatorInterface
         foreach (HandlersLocator::listTypes($envelope) as $type) {
             foreach ($this->validators[$type] ?? [] as $validatorDescription) {
                 if (!\in_array($validatorDescription, $seen, true)) {
-
                     if (!$this->container->make($validatorDescription)) {
-                        throw new RuntimeException(sprintf('Invalid validator configuration: validator "%s" is not in the validator locator.',
-                            $validatorDescription));
+                        throw new RuntimeException(\Safe\sprintf(
+                            'Invalid validator configuration: validator "%s" is not in the validator locator.',
+                            $validatorDescription
+                        ));
                     }
 
                     $seen[] = $validatorDescription;

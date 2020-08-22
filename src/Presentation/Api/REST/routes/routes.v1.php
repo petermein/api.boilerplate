@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 
 /**
@@ -16,10 +16,8 @@ declare(strict_types = 1);
  *
  */
 $router->group(['prefix' => 'v1'], function () use ($router) {
-
     $router->get(
         'example',
         'Example\ExampleController@getAll'
     );
-
 });

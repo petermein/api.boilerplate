@@ -1,20 +1,19 @@
 <?php
 
-declare(strict_types = 1);
-
+declare(strict_types=1);
 
 
 namespace Api\Presentation\Api\GraphQL\Queries;
 
 use Api\Application\Example\Queries\GetAllQuery\GetAllExamplesQuery;
-use Api\Infrastructure\Bus\Buses\QueryBus;
+use Api\Common\Bus\Buses\QueryBus;
 use Closure;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Query;
 
-class ExampleQuery extends Query
+final class ExampleQuery extends Query
 {
     protected $attributes = [
         'name' => 'Example query'
@@ -30,7 +29,6 @@ class ExampleQuery extends Query
      */
     public function __construct(QueryBus $bus)
     {
-
         $this->bus = $bus;
     }
 

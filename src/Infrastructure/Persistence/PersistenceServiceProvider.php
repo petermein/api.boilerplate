@@ -7,14 +7,14 @@ namespace Api\Infrastructure\Persistence;
 
 use Illuminate\Support\ServiceProvider;
 
-class PersistenceServiceProvider extends ServiceProvider
+final class PersistenceServiceProvider extends ServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
      *
      * @var bool
      */
-    protected $defer = true;
+    protected $defer = false;
 
     /**
      * Bootstrap the service provider.
@@ -33,8 +33,10 @@ class PersistenceServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->register(\LaravelDoctrine\ORM\DoctrineServiceProvider::class);
 
 
+        //TODO move to defered provider
         //Example
         $this->app->bind(\Api\Application\Example\Repositories\ExampleRepository::class, function ($app) {
             return new \Api\Infrastructure\Persistence\Repositories\Doctrine\ExampleRepository(

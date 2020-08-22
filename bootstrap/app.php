@@ -94,20 +94,19 @@ $app->configure('app');
 
 
 if ($app->environment('local')) {
-    //Timing plugins, for speed
-//    $app->register(\BeyondCode\ServerTiming\ServerTimingServiceProvider::class);
-//    $app->register(Clockwork\Support\Lumen\ClockworkServiceProvider::class);
-
-//    $app->configure('swagger-lume');
-//    $app->register(\SwaggerLume\ServiceProvider::class);
+    //TODO move to presentation service provider
+    $app->configure('swagger-lume');
+    $app->register(\SwaggerLume\ServiceProvider::class);
 }
 
-$app->register(LaravelDoctrine\ORM\DoctrineServiceProvider::class);
+/**
+ * Common
+ */
+$app->register(Api\Common\Bus\BusServiceProvider::class);
 
 /**
  * Infrastructure
  */
-$app->register(Api\Infrastructure\Bus\BusServiceProvider::class);
 $app->register(Api\Infrastructure\Persistence\PersistenceServiceProvider::class);
 
 /**
@@ -115,26 +114,10 @@ $app->register(Api\Infrastructure\Persistence\PersistenceServiceProvider::class)
  */
 $app->register(Api\Application\ApplicationServiceProvider::class);
 
-
-/*
-|--------------------------------------------------------------------------
-| Load The Application Routes
-|--------------------------------------------------------------------------
-|
-| Next we will include the routes file so that they can all be added to
-| the application. This will provide all of the URLs the application
-| can respond to, as well as the controllers that may handle them.
-|
-*/
-
 /**
- * GraphQL
+ * Presentation
  */
 $app->register(Api\Presentation\Api\GraphQL\GraphQLServiceProvider::class);
-
-/**
- * REST
- */
 $app->register(Api\Presentation\Api\REST\RestServiceProvider::class);
 
 /**

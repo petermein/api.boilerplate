@@ -1,23 +1,45 @@
+services:
+  -
+    class: Spatie\DataTransferObject\PHPstan\PropertiesAreAlwaysInitializedExtension
+    tags:
+      - phpstan.properties.readWriteExtension
+
 includes:
-    - ./vendor/ergebnis/phpstan-rules/rules.neon
-    - ./vendor/phpstan/phpstan-strict-rules/rules.neon
-    - ./vendor/nunomaduro/larastan/extension.neon
-    - ./vendor/thecodingmachine/phpstan-safe-rule/phpstan-safe-rule.neon
+    - phpstan-baseline.neon
+    - vendor/phpstan/phpstan-deprecation-rules/rules.neon
+    - vendor/thecodingmachine/phpstan-safe-rule/phpstan-safe-rule.neon
 
 parameters:
 
     paths:
-        - app
         - tests
         - src
 
     # The level 8 is the highest level
-    level: 5
-
-    ignoreErrors:
-        - '#Unsafe usage of new static#'
+    level: 3
 
     excludes_analyse:
-        - ./*/*/FileToBeExcluded.php
+        - src/Infrastructure/Persistence/database/*
+
+    ignoreErrors:
 
     checkMissingIterableValueType: false
+
+#    ergebnis:
+#        classesAllowedToBeExtended:
+#            - Api\Common\Bus\Abstracts\ValidatorAbstract
+#            - Api\Common\Bus\Abstracts\QueryAbstract
+#            - Api\Common\Bus\Abstracts\CommandAbstract
+#            - Laravel\Lumen\Testing\TestCase
+#            - Laravel\Lumen\Exceptions\Handler
+#            - Laravel\Lumen\Console\Kernel
+#            - Illuminate\Support\ServiceProvider
+#            - Api\Presentation\Api\REST\BaseController
+#            - Rebing\GraphQL\Support\Type
+#            - Rebing\GraphQL\Support\Query
+#            - Api\Infrastructure\Persistence\Repositories\Doctrine\BaseDoctrineRepository
+#            - Api\Common\DTO\DataTransferObjectCollection
+#            - Api\Common\DTO\DataTransferObject
+#            - Spatie\DataTransferObject\DataTransferObjectCollection
+#            - Spatie\DataTransferObject\DataTransferObject
+#            - TestCase

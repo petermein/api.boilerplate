@@ -1,20 +1,19 @@
 <?php
 
-declare(strict_types = 1);
- declare(strict_types=1);
+declare(strict_types=1);
 
 namespace Api\Presentation\Api\REST\Example;
 
 use Api\Application\Example\Models\ExampleListDto;
 use Api\Application\Example\Queries\GetAllQuery\GetAllExamplesQuery;
 use Api\Presentation\Api\REST\BaseController;
+use Illuminate\Http\JsonResponse;
 
 /**
  * Class ExampleController
- *
  * @package Api\Presentation\Api\REST\Example
  */
-class ExampleController extends BaseController
+final class ExampleController extends BaseController
 {
     /**
      * @param GetAllExamplesQuery $request
@@ -34,7 +33,7 @@ class ExampleController extends BaseController
      *     ),
      * )
      */
-    public function getAll(GetAllExamplesQuery $request)
+    public function getAll(GetAllExamplesQuery $request): JsonResponse
     {
         /** @var ExampleListDto $response */
         $response = $this->query($request);

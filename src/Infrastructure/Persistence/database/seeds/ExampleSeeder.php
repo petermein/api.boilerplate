@@ -8,7 +8,7 @@ use Illuminate\Database\Seeder;
 use LaravelDoctrine\ORM\Facades\EntityManager;
 
 /**
- * Class DatabaseSeeder
+ * Class ExampleSeeder
  */
 class ExampleSeeder extends Seeder
 {
@@ -30,8 +30,5 @@ class ExampleSeeder extends Seeder
         /** @var EntityManager $em */
         $em = app()->make(EntityManagerInterface::class);
         $em->persist($example);
-
     }//end run()
-
-
 }//end class

@@ -7,3 +7,4 @@ Homestead.yaml
 *.sqlite
 storage/clockwork
 .php_cs.cache
+.deptrac.cache

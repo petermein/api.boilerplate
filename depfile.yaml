@@ -1,0 +1,39 @@
+paths:
+  - ./src
+exclude_files:
+  - .*test.*
+layers:
+  - name: Common
+    collectors:
+      - type: directory
+        regex: src/Common/.*
+  - name: Domain
+    collectors:
+      - type: directory
+        regex: src/Domain/.*
+  - name: Application
+    collectors:
+      - type: directory
+        regex: src/Application/.*
+  - name: Presentation
+    collectors:
+      - type: directory
+        regex: src/Presentation/.*
+  - name: Infrastructure
+    collectors:
+      - type: directory
+        regex: src/Infrastructure/.*
+ruleset:
+  Common: ~
+  Domain: ~
+  Application:
+    - Common
+    - Domain
+  Presentation:
+    - Application
+    - Common
+    - Domain
+  Infrastructure:
+    - Application
+    - Common
+    - Domain
