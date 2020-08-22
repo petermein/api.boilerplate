@@ -19,6 +19,7 @@ final class ApplicationServiceProvider extends ServiceProvider
         //TODO: rework with dto
         $this->app->resolving(QueryAbstract::class, function ($object, $app) {
 
+
             $data = $app->request->all();
 
             $classReflection = new \ReflectionClass($object);

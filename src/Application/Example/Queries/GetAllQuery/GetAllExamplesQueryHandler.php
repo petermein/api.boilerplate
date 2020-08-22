@@ -34,12 +34,11 @@ final class GetAllExamplesQueryHandler implements HandlerInterface
      */
     public function __invoke(GetAllExamplesQuery $getAllQuery): ExampleListDto
     {
-        $dto = new ExampleListDto();
-//        phpinfo();
-//        exit;
         $example = $this->exampleRepository->find($getAllQuery->id);
 
-        $dto->id = $example->id;
+        $dto = new ExampleListDto([
+            'id' => $example->id
+        ]);
 
         return $dto;
     }

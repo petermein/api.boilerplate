@@ -6,7 +6,7 @@ declare(strict_types=1);
 namespace Api\Common\Bus\Abstracts;
 
 use Api\Common\Bus\Interfaces\QueryInterface;
-use Spatie\DataTransferObject\DataTransferObject;
+use Api\Common\DTO\DataTransferObject;
 
 abstract class QueryAbstract extends DataTransferObject implements QueryInterface
 {

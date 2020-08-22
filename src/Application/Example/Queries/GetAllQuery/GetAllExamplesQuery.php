@@ -20,9 +20,9 @@ final class GetAllExamplesQuery extends QueryAbstract implements HasRequestMappi
     public ?int $id = null;
 
     /**
-     * @var string
+     * @var null|string
      */
-    public string $idPrefixed;
+    public ?string $idPrefixed;
 
     public function requestMapping(Request $request): HasRequestMapping
     {

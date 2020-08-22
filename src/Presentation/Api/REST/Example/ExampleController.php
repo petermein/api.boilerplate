@@ -36,8 +36,8 @@ final class ExampleController extends BaseController
     public function getAll(GetAllExamplesQuery $request): JsonResponse
     {
         /** @var ExampleListDto $response */
-        $response = $this->query($request);
+        $dto = $this->query($request);
 
-        return response()->json($response, $code = 200);
+        return response()->json($dto, $code = 200);
     }
 }

@@ -95,8 +95,8 @@ $app->configure('app');
 
 if ($app->environment('local')) {
     //TODO move to presentation service provider
-    $app->configure('swagger-lume');
-    $app->register(\SwaggerLume\ServiceProvider::class);
+//    $app->configure('swagger-lume');
+//    $app->register(\SwaggerLume\ServiceProvider::class);
 }
 
 /**
