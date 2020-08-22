@@ -6,12 +6,12 @@ An implementation of a lumen API with best design practices and learnings. (DDD,
 #### Must have
 - [x] Upgrade to stable 7.0
 - [x] Example routes for rest
-- [ ] Setup system for DTO objects
+- [x] Setup system for DTO objects
 - [x] Symfony message bus for CQRS
-- [ ] Setup OpenApi parsing method
-- [ ] Setup GraphQL for resource
-- [ ] Setup phpstan validations for ddd structure
-- [ ] Integrate passport
+- [x] Setup OpenApi parsing method
+- [x] Setup GraphQL for resource
+- [x] Setup phpstan validations for ddd structure
+- [ ] Integrate passport / alternative header parsing
 - [ ] Write extensive documentation
 - [x] Port to lumen
 
