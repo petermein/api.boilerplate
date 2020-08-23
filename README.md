@@ -4,7 +4,7 @@ An implementation of a lumen API with best design practices and learnings. (DDD,
 ## TODO
 
 #### Must have
-- [x] Upgrade to stable 7.0
+- [x] Upgrade to stable 7.4
 - [x] Example routes for rest
 - [x] Setup system for DTO objects
 - [x] Symfony message bus for CQRS
@@ -17,7 +17,7 @@ An implementation of a lumen API with best design practices and learnings. (DDD,
 
 #### Should have
 - [ ] Create deployment example
-- [ ] Add docker development support
+- [x] Add docker development support
 - [ ] Add helm chart
 - [ ] Create command generators
 - [ ] WebUI example
