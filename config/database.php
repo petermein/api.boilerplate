@@ -125,6 +125,33 @@ return [
             'database' => env('REDIS_CACHE_DB', 1),
         ],
 
+        'clusters' => [
+            'cluster' => [
+                [
+                    'host' => env('REDIS_HOST_NODE_1', 'redis'),
+                    'password' => env('REDIS_PASSWORD_NODE_1', null),
+                    'port' => env('REDIS_PORT_NODE_1', 6379),
+                    'database' => env('REDIS_DB_NODE_1', 1),
+                    'read_timeout' => 60,
+                ],
+
+                [
+                    'host' => env('REDIS_HOST_NODE_2', 'redis'),
+                    'password' => env('REDIS_PASSWORD_NODE_2', null),
+                    'port' => env('REDIS_PORT_NODE_2', 6379),
+                    'database' => env('REDIS_DB_NODE_2', 1),
+                    'read_timeout' => 60,
+                ],
+
+                [
+                    'host' => env('REDIS_HOST_NODE_3', 'redis'),
+                    'password' => env('REDIS_PASSWORD_NODE_3', null),
+                    'port' => env('REDIS_PORT_NODE_3', 6379),
+                    'database' => env('REDIS_DB_NODE_3', 1),
+                    'read_timeout' => 60,
+                ],
+            ],
+        ],
     ],
 
 ];

@@ -1,0 +1,10 @@
+version: '3.5'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./.docker/Dockerfile
+    volumes:
+      - .:/var/www/html:rw
+    ports:
+      - 80:8080
