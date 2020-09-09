@@ -24,6 +24,7 @@ An implementation of a lumen API with best design practices and learnings. (DDD,
 - [ ] Rename base command (Boilerplate -> x)
 
 #### Could have
+- [ ] Cloudevents / NATS
 - [ ] Setup ES example
 - [ ] Integrate twofactor with passport
 - [ ] Write performance benchmark test

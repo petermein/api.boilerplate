@@ -15,3 +15,11 @@ if (!function_exists('config_path')) {
         return app()->basePath() . '/config' . ($path ? '/' . $path : $path);
     }
 }
+
+//Only is use
+if (!function_exists('resolve')) {
+    function resolve($name, array $parameters = [])
+    {
+        return app($name, $parameters);
+    }
+}

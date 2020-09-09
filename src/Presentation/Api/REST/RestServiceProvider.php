@@ -16,6 +16,13 @@ final class RestServiceProvider extends ServiceProvider
         $path = \Safe\parse_url($url, PHP_URL_PATH);
 
         if ($this->app->runningInConsole()
+            || Str::startsWith($path, ['/api/doc'])
+        ) {
+            $this->app->configure('swagger-lume');
+            $this->app->register(\SwaggerLume\ServiceProvider::class);
+        }
+
+        if ($this->app->runningInConsole()
             || Str::startsWith($path, ['/api'])
         ) {
             $this->app->router->group([

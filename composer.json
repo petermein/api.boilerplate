@@ -10,6 +10,7 @@
   "type": "project",
   "require": {
     "php": "^7.4",
+    "babenkoivan/elastic-migrations": "^1.2",
     "darkaonline/swagger-lume": "7.*",
     "doctrine/inflector": "^1.4",
     "itsgoingd/clockwork": "^4.1",
@@ -36,10 +37,6 @@
     "thecodingmachine/phpstan-safe-rule": "^1.0"
   },
   "autoload": {
-    "classmap": [
-      "src/Infrastructure/Persistence/database/seeds",
-      "src/Infrastructure/Persistence/database/factories"
-    ],
     "psr-4": {
       "Api\\": "src/"
     },
