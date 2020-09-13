@@ -5,7 +5,7 @@ declare(strict_types=1);
 
 namespace Api\Common\Bus\Middleware;
 
-use Api\Common\Bus\Interfaces\QueryInterface;
+use Api\Common\Bus\Interfaces\RequestInterface;
 use Api\Common\Bus\Interfaces\ValidatorInterface;
 use Api\Common\Bus\Interfaces\ValidatorLocatorInterface;
 use Illuminate\Contracts\Validation\Factory;
@@ -46,7 +46,7 @@ final class ValidationMiddleware implements MiddlewareInterface
 
     public function handle(Envelope $envelope, StackInterface $stack): Envelope
     {
-        /** @var QueryInterface $query */
+        /** @var RequestInterface $query */
         $query = $envelope->getMessage();
         $context = [
             'message' => $query,

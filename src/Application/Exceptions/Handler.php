@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
 use Laravel\Lumen\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\Messenger\Exception\HandlerFailedException;
 use Throwable;
 
 final class Handler extends ExceptionHandler
@@ -49,11 +50,28 @@ final class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
-//        if ($request->expectsJson()) {
-        if ($exception instanceof ValidationException) {
-            return response()->json($exception->errors(), 400);
+        //Catch nested handler errors in cqrs
+        if ($exception instanceof HandlerFailedException) {
+            $exception = $exception->getPrevious();
         }
-//        }
+
+        if ($exception instanceof ValidationException) {
+            return response()->json([
+                'error' => true,
+                'message' => $exception->getMessage(),
+                'errors' => $exception->errors(),
+                'code' => 422
+            ], 422);
+        }
+
+        if ($request->expectsJson()) {
+            return response()->json([
+                'error' => true,
+                'message' => $exception->getMessage(),
+                'errors' => [],
+                'code' => $exception->statusCode ?? 500
+            ], $exception->statusCode ?? 500);
+        }
 
         return parent::render($request, $exception);
     }

@@ -93,9 +93,15 @@ $app->configure('app');
 */
 
 /**
+ * Laravel
+ */
+$app->register(Illuminate\Redis\RedisServiceProvider::class);
+
+/**
  * Common
  */
 $app->register(Api\Common\Bus\BusServiceProvider::class);
+$app->register(Api\Common\DTO\DataTransferServiceProvider::class);
 
 /**
  * Infrastructure

@@ -5,7 +5,7 @@ declare(strict_types=1);
 
 namespace Api\Common\Bus\Locators;
 
-use Api\Common\Bus\Interfaces\QueryInterface;
+use Api\Common\Bus\Interfaces\RequestInterface;
 use Api\Common\Bus\Interfaces\ValidatorLocatorInterface;
 use Illuminate\Contracts\Container\Container;
 use Symfony\Component\Messenger\Envelope;
@@ -48,7 +48,7 @@ final class ApplicationValidatorLocator implements ValidatorLocatorInterface
         $seen = [];
 
         //Find via enveloper
-        /** @var QueryInterface $query */
+        /** @var RequestInterface $query */
         $query = $envelope->getMessage();
         $validatorDescriptions = $query->validators();
 

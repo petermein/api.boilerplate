@@ -8,6 +8,7 @@ use Api\Application\Example\Models\ExampleListDto;
 use Api\Application\Example\Queries\GetAllQuery\GetAllExamplesQuery;
 use Api\Presentation\Api\REST\BaseController;
 use Illuminate\Http\JsonResponse;
+use Psr\Log\LoggerInterface;
 
 /**
  * Class ExampleController
@@ -33,10 +34,12 @@ final class ExampleController extends BaseController
      *     ),
      * )
      */
-    public function getAll(GetAllExamplesQuery $request): JsonResponse
+    public function getAll(GetAllExamplesQuery $request, LoggerInterface $logger): JsonResponse
     {
-        /** @var ExampleListDto $response */
-        $dto = $this->query($request);
+        $logger->debug($request->all());
+
+        /** @var ExampleListDto $dto */
+        $dto = $this->send($request);
 
         return response()->json($dto, $code = 200);
     }

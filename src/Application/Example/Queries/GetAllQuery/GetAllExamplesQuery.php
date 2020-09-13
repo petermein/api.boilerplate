@@ -5,19 +5,24 @@ declare(strict_types=1);
 namespace Api\Application\Example\Queries\GetAllQuery;
 
 use Api\Application\System\Interfaces\HasRequestMapping;
-use Api\Common\Bus\Abstracts\QueryAbstract;
+use Api\Common\Bus\Abstracts\RequestAbstract;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class GetAllExamplesQuery
  * @package Api\Application\Example\Queries\GetAllQuery
  */
-final class GetAllExamplesQuery extends QueryAbstract implements HasRequestMapping
+final class GetAllExamplesQuery extends RequestAbstract implements HasRequestMapping
 {
     /**
      * @var int|null
      */
     public ?int $id = null;
+
+    /**
+     * @var int|null
+     */
+    public ?int $number = null;
 
     /**
      * @var null|string

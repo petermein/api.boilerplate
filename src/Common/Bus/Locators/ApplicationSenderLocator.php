@@ -5,7 +5,7 @@ declare(strict_types=1);
 
 namespace Api\Common\Bus\Locators;
 
-use Api\Common\Bus\Abstracts\QueryAbstract;
+use Api\Common\Bus\Abstracts\RequestAbstract;
 use Illuminate\Contracts\Container\Container;
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\Exception\RuntimeException;
@@ -49,7 +49,7 @@ final class ApplicationSenderLocator implements SendersLocatorInterface
         $seen = [];
 
         //Find via enveloper
-        /** @var QueryAbstract $query */
+        /** @var RequestAbstract $query */
         $query = $envelope->getMessage();
         $senderDescriptions = $query->senders();
 

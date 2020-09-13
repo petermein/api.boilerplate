@@ -5,10 +5,10 @@ declare(strict_types=1);
 
 namespace Api\Common\Bus\Abstracts;
 
-use Api\Common\Bus\Interfaces\QueryInterface;
+use Api\Common\Bus\Interfaces\RequestInterface;
 use Api\Common\DTO\DataTransferObject;
 
-abstract class QueryAbstract extends DataTransferObject implements QueryInterface
+abstract class RequestAbstract extends DataTransferObject implements RequestInterface
 {
     protected $providesHandler = true;
     protected $providesValidators = true;

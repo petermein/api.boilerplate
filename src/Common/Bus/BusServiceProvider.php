@@ -5,7 +5,7 @@ declare(strict_types=1);
 
 namespace Api\Common\Bus;
 
-use Api\Common\Bus\Buses\QueryBus;
+use Api\Common\Bus\Buses\Bus;
 use Api\Common\Bus\Interfaces\ValidatorLocatorInterface;
 use Api\Common\Bus\Locators\ApplicationHandlerLocator;
 use Api\Common\Bus\Locators\ApplicationSenderLocator;
@@ -49,8 +49,8 @@ final class BusServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__ . '/Config/bus.php', 'bus');
 
 
-        $this->app->singleton(QueryBus::class, function () {
-            return new QueryBus(new MessageBus([
+        $this->app->singleton(Bus::class, function () {
+            return new Bus(new MessageBus([
                 $this->makeValidationMiddleware(),
                 $this->makeMessageHandleMiddleware(),
                 $this->makeSendMessageMiddleware()

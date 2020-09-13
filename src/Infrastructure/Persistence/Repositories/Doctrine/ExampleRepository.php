@@ -17,7 +17,7 @@ final class ExampleRepository extends BaseDoctrineRepository implements IExample
         $object = $this->genericRepository->find($id);
 
         if ($object === null) {
-            ModelNotFoundException::modelNotFound((new Example), $id);
+            throw ModelNotFoundException::modelNotFound((new Example), $id);
         }
 
         return $object;

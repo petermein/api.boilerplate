@@ -2,14 +2,17 @@ FROM alpine:3.11
 
 ADD https://dl.bintray.com/php-alpine/key/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
 
-RUN apk --update add ca-certificates && \
+RUN apk --update add ca-certificates bash && \
     echo "https://dl.bintray.com/php-alpine/v3.11/php-7.4" >> /etc/apk/repositories
 
 # Install packages and remove default server definition
-RUN apk --no-cache add php php-fpm php-opcache php-pdo php-pdo_sqlite php-sqlite3 php-json php-openssl php-curl \
+RUN apk --no-cache add php php-fpm php-opcache php-pdo php-pdo_mysql php-redis php-json php-openssl php-curl \
     php-zlib php-xml php-phar php-intl php-dom php-xmlreader php-ctype php-session \
     php-mbstring php-gd nginx supervisor curl && \
     rm /etc/nginx/conf.d/default.conf
+
+# Create symlink for easy php access
+RUN ln -s /usr/bin/php7 /usr/bin/php
 
 # Configure nginx
 COPY ./.docker/config/nginx.conf /etc/nginx/nginx.conf

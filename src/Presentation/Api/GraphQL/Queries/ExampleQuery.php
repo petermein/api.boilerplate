@@ -6,7 +6,7 @@ declare(strict_types=1);
 namespace Api\Presentation\Api\GraphQL\Queries;
 
 use Api\Application\Example\Queries\GetAllQuery\GetAllExamplesQuery;
-use Api\Common\Bus\Buses\QueryBus;
+use Api\Common\Bus\Buses\Bus;
 use Closure;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
@@ -19,24 +19,30 @@ final class ExampleQuery extends Query
         'name' => 'Example query'
     ];
     /**
-     * @var QueryBus
+     * @var Bus
      */
-    private QueryBus $bus;
+    private Bus $bus;
 
     /**
      * ExampleQuery constructor.
-     * @param QueryBus $bus
+     * @param Bus $bus
      */
-    public function __construct(QueryBus $bus)
+    public function __construct(Bus $bus)
     {
         $this->bus = $bus;
     }
 
+    /**
+     * @return Type
+     */
     public function type(): Type
     {
         return GraphQL::type('example');
     }
 
+    /**
+     * @return array[]
+     */
     public function args(): array
     {
         return [
@@ -44,11 +50,19 @@ final class ExampleQuery extends Query
         ];
     }
 
+    /**
+     * @param $root
+     * @param $args
+     * @param $context
+     * @param ResolveInfo $resolveInfo
+     * @param Closure $getSelectFields
+     * @return mixed
+     */
     public function resolve($root, $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
         $query = new GetAllExamplesQuery();
         $query->id = $args['id'];
 
-        return $this->bus->query($query);
+        return $this->bus->send($query);
     }
 }
