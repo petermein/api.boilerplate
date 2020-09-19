@@ -8,7 +8,7 @@ namespace Api\Domain\Models;
  * Class Example
  * @package Api\Domain\Models
  */
-final class Example
+class Example
 {
     /**
      * @var integer

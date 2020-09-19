@@ -16,6 +16,12 @@ use Psr\Log\LoggerInterface;
  */
 final class ExampleController extends BaseController
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        parent::__construct();
+    }
+
     /**
      * @param GetAllExamplesQuery $request
      *
