@@ -8,12 +8,13 @@ An implementation of a lumen API with best design practices and learnings. (DDD,
 - [x] Example routes for rest
 - [x] Setup system for DTO objects
 - [x] Symfony message bus for CQRS
-- [x] Setup OpenApi parsing method
+- [ ] Setup OpenApi parsing method
 - [x] Setup GraphQL for resource
 - [x] Setup phpstan validations for ddd structure
 - [ ] Integrate passport / alternative header parsing
 - [ ] Write extensive documentation
 - [x] Port to lumen
+- [ ] Typescript client generation pipeline
 
 #### Should have
 - [ ] Create deployment example
