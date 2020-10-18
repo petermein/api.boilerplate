@@ -1,0 +1,49 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Test api",
+        "description": "Test description",
+        "termsOfService": "",
+        "contact": {},
+        "license": {
+            "name": "Restricted",
+            "url": "https:\/\/infratron.io\/license"
+        },
+        "version": "v1"
+    },
+    "servers": [
+        {
+            "url": "http:\/\/localhost",
+            "description": "Localhost server",
+            "variables": [
+                {
+                    "enum": [
+                        "string"
+                    ],
+                    "default": "test",
+                    "0": "description"
+                }
+            ]
+        }
+    ],
+    "paths": {
+        "\/api\/v1\/example": {
+            "summary": "Examples",
+            "description": "Examples description",
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Api\\Application\\Example\\Models\\ExampleListDto"
+                    }
+                }
+            },
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "Api\\Application\\Example\\Models\\ExampleListDto"
+                    }
+                }
+            }
+        }
+    }
+}

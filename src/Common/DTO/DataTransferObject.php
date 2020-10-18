@@ -5,10 +5,13 @@ declare(strict_types=1);
 namespace Api\Common\DTO;
 
 
+use Illuminate\Contracts\Support\Responsable;
 use Spatie\DataTransferObject\DataTransferObjectError;
 
-abstract class DataTransferObject extends \Spatie\DataTransferObject\DataTransferObject
+abstract class DataTransferObject extends \Spatie\DataTransferObject\DataTransferObject implements Responsable
 {
+    protected int $statusCode = 200;
+
     public function setStrictProperties(bool $strict)
     {
         $this->ignoreMissing = !$strict;
@@ -62,5 +65,15 @@ abstract class DataTransferObject extends \Spatie\DataTransferObject\DataTransfe
         if (!$this->ignoreMissing && count($parameters)) {
             throw DataTransferObjectError::unknownProperties(array_keys($parameters), static::class);
         }
+    }
+
+    public function getStatusCode(): int
+    {
+        return $this->statusCode;
+    }
+
+    public function toResponse($request)
+    {
+        return response()->json($this, $this->getStatusCode());
     }
 }

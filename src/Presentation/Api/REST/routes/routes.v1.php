@@ -16,9 +16,15 @@ declare(strict_types=1);
  *
  */
 
-$router->group(['prefix' => 'v1', 'middleware' => ['auth']], function () use ($router) {
+$router->group(['prefix' => 'v1',
+    'namespace' => 'Example\v1', 'middleware' => ['auth']], function () use ($router) {
     $router->get(
         'example',
-        'Example\ExampleController@getAll'
+        'ExampleController@getAll'
+    );
+
+    $router->post(
+        'example',
+        'ExampleController@post'
     );
 });

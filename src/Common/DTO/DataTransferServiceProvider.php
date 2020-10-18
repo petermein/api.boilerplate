@@ -11,12 +11,6 @@ use Spatie\DataTransferObject\DataTransferObjectError;
 
 class DataTransferServiceProvider extends ServiceProvider
 {
-
-    public function register()
-    {
-        $this->app->register(\Cerbero\ExceptionHandler\Providers\ExceptionHandlerServiceProvider::class);
-    }
-
     public function boot()
     {
         //Exception formatting for DTO object

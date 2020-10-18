@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace Api\Presentation\Console;
 
+use Api\Common\OpenApi\Commands\GenerateOpenApiCommand;
+use Api\Presentation\Console\Commands\OpenApiListCommand;
+use Api\Presentation\Console\Commands\RouteCommand;
+use Api\Presentation\Console\Commands\RoutesCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Laravel\Lumen\Console\Kernel as ConsoleKernel;
 
@@ -15,7 +19,11 @@ final class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        RoutesCommand::class,
+        OpenApiListCommand::class,
+
+        //Common
+        GenerateOpenApiCommand::class
     ];
 
     /**

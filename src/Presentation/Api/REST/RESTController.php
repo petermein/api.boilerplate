@@ -11,8 +11,18 @@ use Api\Common\Bus\Interfaces\RequestInterface;
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller as LumenController;
 
-abstract class BaseController extends LumenController
+abstract class RESTController extends LumenController
 {
+    /**
+     * @var string
+     */
+    public string $summary;
+
+    /**
+     * @var string
+     */
+    public string $description;
+
     /**
      * @var Bus
      */

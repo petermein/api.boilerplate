@@ -18,8 +18,9 @@ final class RestServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()
             || Str::startsWith($path, ['/api/doc'])
         ) {
-            $this->app->configure('swagger-lume');
-            $this->app->register(\SwaggerLume\ServiceProvider::class);
+            //Swagger lume removed, disabled in progress of new openapi
+//            $this->app->configure('swagger-lume');
+//            $this->app->register(\SwaggerLume\ServiceProvider::class);
         }
 
         if ($this->app->runningInConsole()
@@ -28,8 +29,7 @@ final class RestServiceProvider extends ServiceProvider
             $this->app->router->group([
                 'prefix' => 'api',
                 'namespace' => 'Api\Presentation\Api\REST',
-                'middleware' => [
-                ]
+                'middleware' => ['response']
             ], function ($router) {
                 include(__DIR__ . '/routes/routes.v1.php');
             });

@@ -78,7 +78,7 @@ $app->configure('app');
 // ]);
 
 $app->routeMiddleware([
-    'auth' => \Api\Presentation\Api\Authenticate::class,
+    'auth' => \Api\Presentation\Api\Authenticate::class
 ]);
 
 /*
@@ -103,6 +103,8 @@ $app->register(Api\Presentation\Api\AuthServiceProvider::class);
  */
 $app->register(Api\Common\Bus\BusServiceProvider::class);
 $app->register(Api\Common\DTO\DataTransferServiceProvider::class);
+$app->register(Api\Common\ExceptionHandling\ExceptionHandlerServiceProvider::class);
+
 
 /**
  * Infrastructure
