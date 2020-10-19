@@ -13,6 +13,10 @@ return [
 
     ],
 
+    'versions' => [
+        'v1'
+    ],
+
     'info' => [
         'title' => 'Test api',
         'description' => 'Test description',
@@ -43,7 +47,7 @@ return [
                 [
                     'enum' => ['string'],
                     'default' => 'test',
-                    'description'
+                    'description' => ''
                 ]
             ]
         ]

@@ -4,6 +4,7 @@
 namespace Api\Common\OpenApi\Commands;
 
 
+use Api\Common\OpenApi\Analyzers\VersionAnalyzer;
 use Api\Common\OpenApi\Builders\OpenApiBuilder;
 use cebe\openapi\Writer;
 use Illuminate\Console\Command;
@@ -28,15 +29,21 @@ class GenerateOpenApiCommand extends Command
      * @var Writer
      */
     private Writer $specWriter;
+    /**
+     * @var VersionAnalyzer
+     */
+    private VersionAnalyzer $versionAnalyzer;
 
     /**
      * GenerateOpenApiCommand constructor.
      * @param Application $application
+     * @param VersionAnalyzer $versionAnalyzer
      * @param Writer $specWriter
      */
-    public function __construct(Application $application, Writer $specWriter)
+    public function __construct(Application $application, VersionAnalyzer $versionAnalyzer, Writer $specWriter)
     {
         $application->configure('openapi');
+        $this->versionAnalyzer = $versionAnalyzer;
         $this->specWriter = $specWriter;
 
         parent::__construct();
@@ -49,21 +56,24 @@ class GenerateOpenApiCommand extends Command
 
         //Build open api spec for each version
 
-        $version = 'v1';
+        $versions = $this->versionAnalyzer->determineVersions();
 
-        $spec = $openApiBuilder->build($version);
+        foreach ($versions as $version) {
 
-        if (!$spec->validate()) {
-            foreach ($spec->getErrors() as $error) {
-                $this->output->error($error);
+            $spec = $openApiBuilder->build($version);
+
+            if (!$spec->validate()) {
+                foreach ($spec->getErrors() as $error) {
+                    $this->output->error($error);
+                }
+
+                return;
             }
 
-            return;
+            $path = storage_path(sprintf('docs/openapi.%s.json', $version));
+            $this->specWriter::writeToJsonFile($spec, $path);
+
+            $this->info('Generated version file:' . $path);
         }
-
-        $path = storage_path(sprintf('docs/openapi.%s.json', $version));
-        $this->specWriter::writeToJsonFile($spec, $path);
-
-        $this->info('Generated version file:' . $path);
     }
 }

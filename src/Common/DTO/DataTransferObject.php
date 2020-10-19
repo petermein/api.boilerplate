@@ -5,12 +5,19 @@ declare(strict_types=1);
 namespace Api\Common\DTO;
 
 
+use Api\Common\OpenApi\Contracts\DescribableObject;
+use Api\Common\OpenApi\Contracts\HasDescription;
+use Api\Common\OpenApi\Contracts\HasStatusCode;
+use Api\Common\OpenApi\Traits\DescribesObjectTrait;
+use Api\Common\OpenApi\Traits\HasDescriptionTrait;
+use Api\Common\OpenApi\Traits\HasStatusCodeTrait;
 use Illuminate\Contracts\Support\Responsable;
 use Spatie\DataTransferObject\DataTransferObjectError;
 
-abstract class DataTransferObject extends \Spatie\DataTransferObject\DataTransferObject implements Responsable
+abstract class DataTransferObject extends \Spatie\DataTransferObject\DataTransferObject implements HasDescription, HasStatusCode, Responsable
 {
-    protected int $statusCode = 200;
+    use HasDescriptionTrait;
+    use HasStatusCodeTrait;
 
     public function setStrictProperties(bool $strict)
     {
@@ -67,10 +74,6 @@ abstract class DataTransferObject extends \Spatie\DataTransferObject\DataTransfe
         }
     }
 
-    public function getStatusCode(): int
-    {
-        return $this->statusCode;
-    }
 
     public function toResponse($request)
     {

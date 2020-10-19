@@ -21,7 +21,7 @@
                         "string"
                     ],
                     "default": "test",
-                    "0": "description"
+                    "description": ""
                 }
             ]
         }
@@ -33,14 +33,24 @@
             "get": {
                 "responses": {
                     "200": {
-                        "description": "Api\\Application\\Example\\Models\\ExampleListDto"
+                        "description": "ExampleListDto",
+                        "content": [
+                            {
+                                "example": "{\"id\":1,\"string\":\"string\",\"double\":1.23,\"boolean\":true,\"array\":[],\"description\":\"string\"}"
+                            }
+                        ]
                     }
                 }
             },
             "post": {
                 "responses": {
                     "200": {
-                        "description": "Api\\Application\\Example\\Models\\ExampleListDto"
+                        "description": "ExampleListDto",
+                        "content": [
+                            {
+                                "example": "{\"id\":1,\"string\":\"string\",\"double\":1.23,\"boolean\":true,\"array\":[],\"description\":\"string\"}"
+                            }
+                        ]
                     }
                 }
             }

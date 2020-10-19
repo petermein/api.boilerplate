@@ -20,7 +20,22 @@ final class ExampleListDto extends DataTransferObject
      * The unique identifier of a product in our catalog.
      *
      * @var integer
-     * @OA\Property(format="int64", example=1)
      */
     public int $id;
+    /**
+     * @var string
+     */
+    public string $string;
+    /**
+     * @var float
+     */
+    public float $double;
+    /**
+     * @var bool
+     */
+    public bool $boolean;
+    /**
+     * @var ExampleListDto[]
+     */
+    public array $array;
 }

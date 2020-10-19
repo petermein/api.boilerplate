@@ -5,41 +5,45 @@ namespace Api\Common\OpenApi\Builders;
 
 
 use Api\Common\OpenApi\Analyzers\RouteAnalyzer;
+use Api\Common\OpenApi\Contracts\HasDescription;
+use Api\Common\OpenApi\Contracts\HasSummary;
 use Api\Common\OpenApi\Exceptions\NotAllowedException;
 use Api\Common\OpenApi\Utils\RouteHelper;
-use Api\Presentation\Api\REST\RESTController;
 use cebe\openapi\spec\PathItem;
 use cebe\openapi\spec\Paths;
+use Illuminate\Container\Container;
 use Illuminate\Support\Collection;
-use Laravel\Lumen\Application;
 
 class PathBuilder
 {
     /**
      * @var RouteAnalyzer
      */
-    private RouteAnalyzer $routeAnalyzer;
+    protected RouteAnalyzer $routeAnalyzer;
     /**
-     * @var Application
+     * @var Container
      */
-    private Application $application;
+    protected Container $application;
     /**
      * @var OperationBuilder
      */
-    private OperationBuilder $operationBuilder;
+    protected OperationBuilder $operationBuilder;
     /**
      * @var RouteHelper
      */
-    private RouteHelper $routeHelper;
+    protected RouteHelper $routeHelper;
 
     /**
      * PathBuilder constructor.
-     * @param Application $application
+     * @param Container $application
      * @param RouteAnalyzer $routeAnalyzer
      * @param OperationBuilder $operationBuilder
      * @param RouteHelper $routeHelper
      */
-    public function __construct(Application $application, RouteAnalyzer $routeAnalyzer, OperationBuilder $operationBuilder, RouteHelper $routeHelper)
+    public function __construct(Container $application,
+                                RouteAnalyzer $routeAnalyzer,
+                                OperationBuilder $operationBuilder,
+                                RouteHelper $routeHelper)
     {
         $this->application = $application;
         $this->routeAnalyzer = $routeAnalyzer;
@@ -72,14 +76,22 @@ class PathBuilder
 
         $baseController = $this->instantiateController($controllerClass);
 
-        $pathItem = new PathItem([
-            'description' => $baseController->description,
-            'summary' => $baseController->summary
+        $pathData = [];
+
+        if ($baseController instanceof HasDescription) {
+            $pathData['description'] = $baseController->getDescription();
+        }
+
+        if ($baseController instanceof HasSummary) {
+            $pathData['summary'] = $baseController->getSummary();
+        }
+
+        $pathItem = new PathItem($pathData
 
 //TODO:            'servers' => [Server::class],
 //TODO:            'parameters' => [Parameter::class],
 
-        ]);
+        );
 
         foreach ($routes as $route) {
             $method = strtolower($route['method']);
@@ -88,21 +100,6 @@ class PathBuilder
         }
 
         return $pathItem;
-
-
-//        'summary' => Type::STRING,
-//            'description' => Type::STRING,
-//            'get' => Operation::class,
-//            'put' => Operation::class,
-//            'post' => Operation::class,
-//            'delete' => Operation::class,
-//            'options' => Operation::class,
-//            'head' => Operation::class,
-//            'patch' => Operation::class,
-//            'trace' => Operation::class,
-//            'servers' => [Server::class],
-//            'parameters' => [Parameter::class],
-
     }
 
     /**
@@ -136,7 +133,7 @@ class PathBuilder
         }
     }
 
-    public function instantiateController(string $controllerClass): RESTController
+    public function instantiateController(string $controllerClass)
     {
         return $this->application->make($controllerClass);
     }

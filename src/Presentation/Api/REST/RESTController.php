@@ -8,20 +8,18 @@ namespace Api\Presentation\Api\REST;
 use Api\Application\Auth\Models\User;
 use Api\Common\Bus\Buses\Bus;
 use Api\Common\Bus\Interfaces\RequestInterface;
+use Api\Common\OpenApi\Contracts\DescribableObject;
+use Api\Common\OpenApi\Contracts\HasDescription;
+use Api\Common\OpenApi\Contracts\HasSummary;
+use Api\Common\OpenApi\Traits\DescribesObjectTrait;
+use Api\Common\OpenApi\Traits\HasDescriptionTrait;
+use Api\Common\OpenApi\Traits\HasSummaryTrait;
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller as LumenController;
 
-abstract class RESTController extends LumenController
+abstract class RESTController extends LumenController implements HasDescription, HasSummary
 {
-    /**
-     * @var string
-     */
-    public string $summary;
-
-    /**
-     * @var string
-     */
-    public string $description;
+    use HasDescriptionTrait, HasSummaryTrait;
 
     /**
      * @var Bus
@@ -55,4 +53,6 @@ abstract class RESTController extends LumenController
     {
         return $this->request->user();
     }
+
+
 }

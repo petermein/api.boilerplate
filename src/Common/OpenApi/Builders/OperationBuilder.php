@@ -4,21 +4,20 @@
 namespace Api\Common\OpenApi\Builders;
 
 
-use Api\Common\OpenApi\Analyzers\ResponseAnalyzer;
 use cebe\openapi\spec\Operation;
 
 class OperationBuilder
 {
     /**
-     * @var ResponseAnalyzer
+     * @var ResponseBuilder
      */
-    private ResponseAnalyzer $responseAnalyzer;
+    private ResponseBuilder $responseAnalyzer;
 
     /**
      * OperationBuilder constructor.
-     * @param ResponseAnalyzer $responseAnalyzer
+     * @param ResponseBuilder $responseAnalyzer
      */
-    public function __construct(ResponseAnalyzer $responseAnalyzer)
+    public function __construct(ResponseBuilder $responseAnalyzer)
     {
         $this->responseAnalyzer = $responseAnalyzer;
     }
