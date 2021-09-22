@@ -44,7 +44,7 @@ return [
             'url' => 'http://localhost',
             'description' => 'Localhost server',
             'variables' => [
-                [
+                'id' => [
                     'enum' => ['string'],
                     'default' => 'test',
                     'description' => ''

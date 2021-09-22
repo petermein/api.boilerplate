@@ -9,7 +9,7 @@ trait HasDescriptionTrait
     /**
      * @var string
      */
-    public string $description;
+    protected string $description;
 
     public function getDescription(): string
     {

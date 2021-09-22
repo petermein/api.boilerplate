@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Api\Common\ExceptionHandling;
 
+use ReflectionClass;
 use ReflectionFunction;
 use Throwable;
 
@@ -95,7 +96,12 @@ final class HandlersRepository
             return false;
         }
 
-        return $params[0]->getClass() ? $params[0]->getClass()->isInstance($e) : true;
+        /** @var  $class */
+        $class = $params[0]->getType() && !$params[0]->getType()->isBuiltin()
+            ? new ReflectionClass($params[0]->getType()->getName())
+            : null;
+
+        return $class === null || $class->isInstance($e);
     }
 
     /**

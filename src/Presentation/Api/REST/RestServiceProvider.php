@@ -29,7 +29,7 @@ final class RestServiceProvider extends ServiceProvider
             $this->app->router->group([
                 'prefix' => 'api',
                 'namespace' => 'Api\Presentation\Api\REST',
-                'middleware' => ['response']
+                'middleware' => []
             ], function ($router) {
                 include(__DIR__ . '/routes/routes.v1.php');
             });

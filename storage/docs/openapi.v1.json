@@ -15,15 +15,15 @@
         {
             "url": "http:\/\/localhost",
             "description": "Localhost server",
-            "variables": [
-                {
+            "variables": {
+                "id": {
                     "enum": [
                         "string"
                     ],
                     "default": "test",
                     "description": ""
                 }
-            ]
+            }
         }
     ],
     "paths": {
@@ -34,11 +34,65 @@
                 "responses": {
                     "200": {
                         "description": "ExampleListDto",
-                        "content": [
-                            {
-                                "example": "{\"id\":1,\"string\":\"string\",\"double\":1.23,\"boolean\":true,\"array\":[],\"description\":\"string\"}"
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "nullable": false
+                                        },
+                                        "string": {
+                                            "type": "string",
+                                            "nullable": false
+                                        },
+                                        "double": {
+                                            "type": "number",
+                                            "nullable": false
+                                        },
+                                        "boolean": {
+                                            "type": "boolean",
+                                            "nullable": false
+                                        },
+                                        "array1": {
+                                            "type": "array",
+                                            "nullable": false
+                                        },
+                                        "array2": {
+                                            "type": "array",
+                                            "nullable": false
+                                        },
+                                        "object": {
+                                            "nullable": false
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "id": 1,
+                                    "string": "string",
+                                    "double": 1.23,
+                                    "boolean": true,
+                                    "array1": [
+                                        "string"
+                                    ],
+                                    "array2": [
+                                        {
+                                            "id": 1,
+                                            "string": "string",
+                                            "double": 1.23,
+                                            "boolean": true
+                                        }
+                                    ],
+                                    "object": {
+                                        "id": 1,
+                                        "string": "string",
+                                        "double": 1.23,
+                                        "boolean": true
+                                    }
+                                }
                             }
-                        ]
+                        }
                     }
                 }
             },
@@ -46,11 +100,65 @@
                 "responses": {
                     "200": {
                         "description": "ExampleListDto",
-                        "content": [
-                            {
-                                "example": "{\"id\":1,\"string\":\"string\",\"double\":1.23,\"boolean\":true,\"array\":[],\"description\":\"string\"}"
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "nullable": false
+                                        },
+                                        "string": {
+                                            "type": "string",
+                                            "nullable": false
+                                        },
+                                        "double": {
+                                            "type": "number",
+                                            "nullable": false
+                                        },
+                                        "boolean": {
+                                            "type": "boolean",
+                                            "nullable": false
+                                        },
+                                        "array1": {
+                                            "type": "array",
+                                            "nullable": false
+                                        },
+                                        "array2": {
+                                            "type": "array",
+                                            "nullable": false
+                                        },
+                                        "object": {
+                                            "nullable": false
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "id": 1,
+                                    "string": "string",
+                                    "double": 1.23,
+                                    "boolean": true,
+                                    "array1": [
+                                        "string"
+                                    ],
+                                    "array2": [
+                                        {
+                                            "id": 1,
+                                            "string": "string",
+                                            "double": 1.23,
+                                            "boolean": true
+                                        }
+                                    ],
+                                    "object": {
+                                        "id": 1,
+                                        "string": "string",
+                                        "double": 1.23,
+                                        "boolean": true
+                                    }
+                                }
                             }
-                        ]
+                        }
                     }
                 }
             }

@@ -49,6 +49,51 @@ class RoutesCommand extends Command
     }
 
     /**
+     * Display the route information on the console.
+     *
+     * @param array $routes
+     * @return void
+     */
+    protected function displayRoutes(array $routes)
+    {
+        if (empty($routes)) {
+            return $this->error("Your application doesn't have any routes.");
+        }
+
+        $this->table($this->getHeaders(), $routes);
+    }
+
+    /**
+     * Get the table headers for the visible columns.
+     *
+     * @return array
+     */
+    protected function getHeaders()
+    {
+        return Arr::only($this->headers, array_keys($this->getColumns()));
+    }
+
+    /**
+     * Get the column names to show (lowercase table headers).
+     *
+     * @return array
+     */
+    protected function getColumns()
+    {
+        $availableColumns = array_map('lcfirst', $this->headers);
+
+        if ($this->option('compact')) {
+            return array_intersect($availableColumns, $this->compactColumns);
+        }
+
+        if ($columns = $this->option('columns')) {
+            return array_intersect($availableColumns, array_map('lcfirst', $columns));
+        }
+
+        return $availableColumns;
+    }
+
+    /**
      * Compile the routes into a displayable format.
      *
      * @return array
@@ -80,15 +125,6 @@ class RoutesCommand extends Command
 
     /**
      * @param array $action
-     * @return string
-     */
-    protected function getNamedRoute(array $action)
-    {
-        return (!isset($action['as'])) ? "" : $action['as'];
-    }
-
-    /**
-     * @param array $action
      * @return mixed|string
      */
     protected function getController(array $action)
@@ -98,6 +134,15 @@ class RoutesCommand extends Command
         }
 
         return current(explode("@", $action['uses']));
+    }
+
+    /**
+     * @param array $action
+     * @return string
+     */
+    protected function getNamedRoute(array $action)
+    {
+        return (!isset($action['as'])) ? "" : $action['as'];
     }
 
     /**
@@ -141,51 +186,6 @@ class RoutesCommand extends Command
         return array_map(function ($route) {
             return Arr::only($route, $this->getColumns());
         }, $routes);
-    }
-
-    /**
-     * Display the route information on the console.
-     *
-     * @param array $routes
-     * @return void
-     */
-    protected function displayRoutes(array $routes)
-    {
-        if (empty($routes)) {
-            return $this->error("Your application doesn't have any routes.");
-        }
-
-        $this->table($this->getHeaders(), $routes);
-    }
-
-    /**
-     * Get the table headers for the visible columns.
-     *
-     * @return array
-     */
-    protected function getHeaders()
-    {
-        return Arr::only($this->headers, array_keys($this->getColumns()));
-    }
-
-    /**
-     * Get the column names to show (lowercase table headers).
-     *
-     * @return array
-     */
-    protected function getColumns()
-    {
-        $availableColumns = array_map('lcfirst', $this->headers);
-
-        if ($this->option('compact')) {
-            return array_intersect($availableColumns, $this->compactColumns);
-        }
-
-        if ($columns = $this->option('columns')) {
-            return array_intersect($availableColumns, array_map('lcfirst', $columns));
-        }
-
-        return $availableColumns;
     }
 
     /**

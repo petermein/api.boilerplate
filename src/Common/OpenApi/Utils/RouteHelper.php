@@ -10,6 +10,50 @@ use Illuminate\Support\Collection;
 class RouteHelper
 {
 
+    public function reflectOnAction(array $action): array
+    {
+        $class = $this->getController($action);
+        $method = $this->getAction($action);
+
+        //Don't check closures
+        if ($method == 'Closure') {
+            return [false, false];
+        }
+
+        $reflection = new \ReflectionMethod($class, $method);
+
+        //TODO: move to functional magic with colleciton
+        $params = $reflection->getParameters();
+        $requests = new Collection();
+
+        foreach ($params as $param) {
+            $reflectionClass = $param->getDeclaringClass();
+            if ($reflectionClass === null) {
+                continue;
+            }
+
+            $interfaces = $reflectionClass->getInterfaces();
+
+            if (isset($interfaces[RequestInterface::class])) {
+                $requests->add($reflectionClass);
+            }
+        }
+
+        //Validate with atleast one request object
+        if ($requests->isEmpty()) {
+            return [false, false];
+        }
+
+        if ($requests->count() > 1) {
+            throw new \Exception('Multiple request params is not yet supported');
+        }
+
+        $returnType = $reflection->getReturnType();
+        $returnClass = $returnType->getName();
+
+        return [$requests->first()->getName(), $returnClass];
+    }
+
     /**
      * @param array $action
      * @return mixed|string
@@ -39,49 +83,5 @@ class RouteHelper
         } else {
             return 'Closure';
         }
-    }
-
-    public function reflectOnAction(array $action): array
-    {
-        $class = $this->getController($action);
-        $method = $this->getAction($action);
-
-        //Don't check closures
-        if ($method == 'Closure') {
-            return [false, false];
-        }
-
-        $reflection = new \ReflectionMethod($class, $method);
-
-        //TODO: move to functional magic with colleciton
-        $params = $reflection->getParameters();
-        $requests = new Collection();
-
-        foreach ($params as $param) {
-            $reflectionClass = $param->getClass();
-            if ($reflectionClass === null) {
-                continue;
-            }
-
-            $interfaces = $reflectionClass->getInterfaces();
-
-            if (isset($interfaces[RequestInterface::class])) {
-                $requests->add($reflectionClass);
-            }
-        }
-
-        //Validate with atleast one request object
-        if ($requests->isEmpty()) {
-            return [false, false];
-        }
-
-        if ($requests->count() > 1) {
-            throw new \Exception('Multiple request params is not yet supported');
-        }
-
-        $returnType = $reflection->getReturnType();
-        $returnClass = $returnType->getName();
-
-        return [$requests->first()->getName(), $returnClass];
     }
 }

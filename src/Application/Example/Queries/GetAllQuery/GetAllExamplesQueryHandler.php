@@ -39,6 +39,7 @@ final class GetAllExamplesQueryHandler implements HandlerInterface
         $dto = new ExampleListDto([
             'id' => $example->id
         ]);
+        dd(1);
 
         return $dto;
     }

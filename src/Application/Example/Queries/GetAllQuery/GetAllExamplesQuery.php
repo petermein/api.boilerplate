@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Api\Application\Example\Queries\GetAllQuery;
 
+use Api\Application\Example\Models\ExampleDto;
 use Api\Application\System\Interfaces\HasRequestMapping;
 use Api\Common\Bus\Abstracts\RequestAbstract;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,6 +24,8 @@ final class GetAllExamplesQuery extends RequestAbstract implements HasRequestMap
      * @var int|null
      */
     public ?int $number = null;
+
+    public ?ExampleDto $example;
 
     /**
      * @var null|string

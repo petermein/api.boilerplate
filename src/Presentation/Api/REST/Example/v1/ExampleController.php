@@ -19,22 +19,17 @@ final class ExampleController extends RESTController
 
     public string $description = 'Examples description';
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-        parent::__construct();
-    }
-
     public function getAll(GetAllExamplesQuery $request, LoggerInterface $logger): ExampleListDto
     {
         $logger->debug($request->all());
 
         /** @var ExampleListDto $dto */
-        return $this->send($request);
+        return dd($this->send($request));
     }
 
     public function post(GetAllExamplesQuery $request, LoggerInterface $logger): ExampleListDto
     {
-        //TODO
+        /** @var ExampleListDto $dto */
+        return $this->send($request);
     }
 }

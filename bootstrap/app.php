@@ -97,7 +97,6 @@ $app->routeMiddleware([
  */
 $app->register(Illuminate\Redis\RedisServiceProvider::class);
 $app->register(Api\Presentation\Api\AuthServiceProvider::class);
-
 /**
  * Common
  */
@@ -121,7 +120,6 @@ $app->register(Api\Application\ApplicationServiceProvider::class);
  */
 $app->register(Api\Presentation\Api\GraphQL\GraphQLServiceProvider::class);
 $app->register(Api\Presentation\Api\REST\RestServiceProvider::class);
-
 
 /**
  * Root

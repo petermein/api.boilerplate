@@ -6,7 +6,7 @@ namespace Api\Application\Example\Models;
 
 use Api\Common\DTO\DataTransferObject;
 
-final class ExampleListDto extends DataTransferObject
+final class ExampleDto extends DataTransferObject
 {
     /**
      * The unique identifier of a product in our catalog.
@@ -26,19 +26,10 @@ final class ExampleListDto extends DataTransferObject
      * @var bool
      */
     public bool $boolean;
+//
+//    /**
+//     * @var string[]
+//     */
+//    public array $array1;
 
-    /**
-     * @var string[]
-     */
-    public array $array1;
-
-    /**
-     * @var ExampleDto[]|array
-     */
-    public array $array2;
-
-    /**
-     * @var Api\Application\Example\Models\ExampleDto
-     */
-    public ExampleDto $object;
 }
