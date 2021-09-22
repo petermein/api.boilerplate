@@ -23,13 +23,11 @@ final class ExampleController extends RESTController
     {
         $logger->debug($request->all());
 
-        /** @var ExampleListDto $dto */
-        return dd($this->send($request));
+        return $this->send($request);
     }
 
     public function post(GetAllExamplesQuery $request, LoggerInterface $logger): ExampleListDto
     {
-        /** @var ExampleListDto $dto */
         return $this->send($request);
     }
 }

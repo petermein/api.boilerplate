@@ -35,7 +35,7 @@ class DataTransferServiceProvider extends ServiceProvider
 
     public function renderUnknownProperties(DataTransferObjectError $e)
     {
-        \Safe\preg_match_all('/\`(.*?)\`/', $e, $errors);
+        \Safe\preg_match_all('/`(.*?)`/', $e, $errors);
         $errors = collect($errors[1] ?? [])->mapWithKeys(function ($value) {
             return [$value => ['Property not found on request']];
         });

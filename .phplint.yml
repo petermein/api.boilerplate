@@ -1,0 +1,8 @@
+path: ./src
+jobs: 10
+cache: storage/phplint.cache
+extensions:
+  - php
+exclude:
+  - vendor
+warning: false

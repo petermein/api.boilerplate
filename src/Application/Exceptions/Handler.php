@@ -5,6 +5,7 @@ declare(strict_types=1);
 
 namespace Api\Application\Exceptions;
 
+use Api\Domain\Exceptions\Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
@@ -44,11 +45,11 @@ final class Handler extends ExceptionHandler
 
     /**
      * @param \Illuminate\Http\Request $request
-     * @param Throwable $exception
+     * @param Throwable|Exception $exception
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response|\Symfony\Component\HttpFoundation\Response
      * @throws Throwable
      */
-    public function render($request, Throwable $exception)
+    public function render($request, Throwable|Exception $exception)
     {
         //Catch nested handler errors in cqrs
         if ($exception instanceof HandlerFailedException) {

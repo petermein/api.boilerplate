@@ -20,9 +20,8 @@ abstract class BaseDoctrineRepository
     protected EntityManagerInterface $entityManager;
 
     /**
-     * BaseDoctrineRepository constructor.
      * @param EntityManagerInterface $entityManager
-     * @param ObjectRepository $genericRepository
+     * @param EntityRepository $genericRepository
      */
     public function __construct(EntityManagerInterface $entityManager, EntityRepository $genericRepository)
     {

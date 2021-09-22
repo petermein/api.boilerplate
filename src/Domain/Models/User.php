@@ -38,7 +38,7 @@ class User
      */
     public function hasScope($scope): bool
     {
-        return isset(array_flip($this->scope)[$scope]);
+        return isset(\Safe\array_flip($this->scope)[$scope]);
     }
 
 }//end class

@@ -57,7 +57,8 @@ class RoutesCommand extends Command
     protected function displayRoutes(array $routes)
     {
         if (empty($routes)) {
-            return $this->error("Your application doesn't have any routes.");
+            $this->error("Your application doesn't have any routes.");
+            return;
         }
 
         $this->table($this->getHeaders(), $routes);
@@ -108,7 +109,7 @@ class RoutesCommand extends Command
             $controller = $this->getController($route['action']);
             // Show class name without namesapce
             if ($this->option('compact') && $controller !== 'None')
-                $controller = substr($controller, strrpos($controller, '\\') + 1);
+                $controller = \Safe\substr($controller, strrpos($controller, '\\') + 1);
 
             $rows[] = [
                 'verb' => $route['method'],
@@ -154,7 +155,7 @@ class RoutesCommand extends Command
         if (!empty($action['uses'])) {
             $data = $action['uses'];
             if (($pos = strpos($data, "@")) !== false) {
-                return substr($data, $pos + 1);
+                return \Safe\substr($data, $pos + 1);
             } else {
                 return "METHOD NOT FOUND";
             }

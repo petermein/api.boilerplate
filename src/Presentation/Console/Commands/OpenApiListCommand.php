@@ -208,7 +208,7 @@ class OpenApiListCommand extends Command
         if (!empty($action['uses'])) {
             $data = $action['uses'];
             if (($pos = strpos($data, "@")) !== false) {
-                return substr($data, $pos + 1);
+                return \Safe\substr($data, $pos + 1);
             } else {
                 return "METHOD NOT FOUND";
             }

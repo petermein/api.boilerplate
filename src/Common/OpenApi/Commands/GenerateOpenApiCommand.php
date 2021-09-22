@@ -17,7 +17,7 @@ class GenerateOpenApiCommand extends Command
      *
      * @var string
      */
-    protected $name = 'OpenApi:generate';
+    protected $name = 'openapi:generate';
 
     /**
      * The console command description.
@@ -70,7 +70,7 @@ class GenerateOpenApiCommand extends Command
                 return;
             }
 
-            $path = storage_path(sprintf('docs/openapi.%s.json', $version));
+            $path = storage_path(\Safe\sprintf('docs/openapi.%s.json', $version));
             $this->specWriter::writeToJsonFile($spec, $path);
 
             $this->info('Generated version file:' . $path);

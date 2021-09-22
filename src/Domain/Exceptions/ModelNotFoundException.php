@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Api\Domain\Exceptions;
 
 
-final class ModelNotFoundException extends \RuntimeException
+final class ModelNotFoundException extends Exception
 {
     public int $statusCode = 404;
 

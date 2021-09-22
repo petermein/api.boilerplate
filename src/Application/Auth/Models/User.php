@@ -15,7 +15,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
  */
 class User extends DomainUser implements Authenticatable
 {
-    public function getAuthIdentifierName()
+    public function getAuthIdentifierName(): string
     {
         return $this->name;
     }

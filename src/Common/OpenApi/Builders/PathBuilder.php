@@ -40,10 +40,10 @@ class PathBuilder
      * @param OperationBuilder $operationBuilder
      * @param RouteHelper $routeHelper
      */
-    public function __construct(Container $application,
-                                RouteAnalyzer $routeAnalyzer,
+    public function __construct(Container        $application,
+                                RouteAnalyzer    $routeAnalyzer,
                                 OperationBuilder $operationBuilder,
-                                RouteHelper $routeHelper)
+                                RouteHelper      $routeHelper)
     {
         $this->application = $application;
         $this->routeAnalyzer = $routeAnalyzer;
@@ -102,6 +102,11 @@ class PathBuilder
         return $pathItem;
     }
 
+    public function instantiateController(string $controllerClass)
+    {
+        return $this->application->make($controllerClass);
+    }
+
     /**
      * @param array $action
      * @return bool|string
@@ -124,17 +129,12 @@ class PathBuilder
         if (!empty($action['uses'])) {
             $data = $action['uses'];
             if (($pos = strpos($data, "@")) !== false) {
-                return substr($data, $pos + 1);
+                return \Safe\substr($data, $pos + 1);
             } else {
                 return "METHOD NOT FOUND";
             }
         } else {
             return 'Closure';
         }
-    }
-
-    public function instantiateController(string $controllerClass)
-    {
-        return $this->application->make($controllerClass);
     }
 }

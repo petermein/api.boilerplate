@@ -31,14 +31,13 @@ final class ExampleListDto extends DataTransferObject
      * @var string[]
      */
     public array $array1;
-
     /**
      * @var ExampleDto[]|array
      */
     public array $array2;
 
     /**
-     * @var Api\Application\Example\Models\ExampleDto
+     * @var ExampleDto
      */
     public ExampleDto $object;
 }

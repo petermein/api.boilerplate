@@ -71,7 +71,7 @@ final class HandlersRepository
     /**
      * Retrieve all reporters handling the given exception
      *
-     * @param \Throwable $e
+     * @param Throwable $e
      * @return array
      */
     public function getReportersByException(Throwable $e)
@@ -85,7 +85,7 @@ final class HandlersRepository
      * Determine whether the given handler can handle the provided exception
      *
      * @param callable $handler
-     * @param \Throwable $e
+     * @param Throwable $e
      * @return bool
      */
     protected function handlesException(callable $handler, Throwable $e)
@@ -107,7 +107,7 @@ final class HandlersRepository
     /**
      * Retrieve all renderers handling the given exception
      *
-     * @param \Throwable $e
+     * @param Throwable $e
      * @return array
      */
     public function getRenderersByException(Throwable $e)
@@ -120,7 +120,7 @@ final class HandlersRepository
     /**
      * Retrieve all console renderers handling the given exception
      *
-     * @param \Throwable $e
+     * @param Throwable $e
      * @return array
      */
     public function getConsoleRenderersByException(Throwable $e)

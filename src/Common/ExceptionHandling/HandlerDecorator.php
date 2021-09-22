@@ -15,24 +15,18 @@ use Throwable;
 final class HandlerDecorator implements ExceptionHandler
 {
     /**
-     * The default Laravel exception handler.
-     *
-     * @var \Illuminate\Contracts\Debug\ExceptionHandler
+     * @var ExceptionHandler
      */
     protected $defaultHandler;
 
     /**
-     * The custom handlers repository.
-     *
-     * @var \Cerbero\ExceptionHandler\HandlersRepository
+     * @var HandlersRepository
      */
     protected $repository;
 
     /**
-     * Set the dependencies.
-     *
-     * @param \Illuminate\Contracts\Debug\ExceptionHandler $defaultHandler
-     * @param \Cerbero\ExceptionHandler\HandlersRepository $repository
+     * @param ExceptionHandler $defaultHandler
+     * @param HandlersRepository $repository
      */
     public function __construct(ExceptionHandler $defaultHandler, HandlersRepository $repository)
     {
@@ -44,10 +38,10 @@ final class HandlerDecorator implements ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * @param \Throwable $e
+     * @param Throwable $e
      * @return mixed
      *
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function report(Throwable $e)
     {
@@ -63,7 +57,7 @@ final class HandlerDecorator implements ExceptionHandler
     /**
      * Register a custom handler to report exceptions
      *
-     * @param callable $callback
+     * @param callable $reporter
      * @return int
      */
     public function reporter(callable $reporter)
@@ -75,7 +69,7 @@ final class HandlerDecorator implements ExceptionHandler
      * Render an exception into a response.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \Throwable $e
+     * @param Throwable $e
      * @return \Illuminate\Http\Response|\Symfony\Component\HttpFoundation\Response
      */
     public function render($request, Throwable $e)
@@ -92,7 +86,7 @@ final class HandlerDecorator implements ExceptionHandler
     /**
      * Register a custom handler to render exceptions
      *
-     * @param callable $callback
+     * @param callable $renderer
      * @return int
      */
     public function renderer(callable $renderer)
@@ -104,7 +98,7 @@ final class HandlerDecorator implements ExceptionHandler
      * Render an exception to the console.
      *
      * @param \Symfony\Component\Console\Output\OutputInterface $output
-     * @param \Throwable $e
+     * @param Throwable $e
      * @return mixed
      */
     public function renderForConsole($output, Throwable $e)
@@ -121,7 +115,7 @@ final class HandlerDecorator implements ExceptionHandler
     /**
      * Register a custom handler to render exceptions in console
      *
-     * @param callable $callback
+     * @param callable $renderer
      * @return int
      */
     public function consoleRenderer(callable $renderer)
@@ -132,7 +126,7 @@ final class HandlerDecorator implements ExceptionHandler
     /**
      * Determine if the exception should be reported.
      *
-     * @param \Throwable $e
+     * @param Throwable $e
      * @return bool
      */
     public function shouldReport(Throwable $e)

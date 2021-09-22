@@ -7,8 +7,17 @@ namespace Api\Common\Bus\Abstracts;
 
 abstract class CommandAbstract implements \Api\Common\Bus\Interfaces\CommandInterface
 {
+    /**
+     * @var bool $providesHandler
+     */
     protected $providesHandler = true;
+    /**
+     * @var bool $providesValidators
+     */
     protected $providesValidators = true;
+    /**
+     * @var bool $providesSenders
+     */
     protected $providesSenders = true;
 
     public function getData(): array

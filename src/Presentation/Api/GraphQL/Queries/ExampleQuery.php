@@ -51,9 +51,9 @@ final class ExampleQuery extends Query
     }
 
     /**
-     * @param $root
-     * @param $args
-     * @param $context
+     * @param mixed $root
+     * @param array $args
+     * @param mixed $context
      * @param ResolveInfo $resolveInfo
      * @param Closure $getSelectFields
      * @return mixed
