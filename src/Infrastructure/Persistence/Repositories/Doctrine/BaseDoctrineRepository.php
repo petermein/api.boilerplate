@@ -11,7 +11,7 @@ use Doctrine\ORM\EntityRepository;
 abstract class BaseDoctrineRepository
 {
     /**
-     * @var ObjectRepository
+     * @var EntityRepository
      */
     protected $genericRepository;
     /**

@@ -5,7 +5,9 @@ declare(strict_types=1);
 
 namespace Api\Common\Bus\Abstracts;
 
-abstract class CommandAbstract implements \Api\Common\Bus\Interfaces\CommandInterface
+use Api\Common\Bus\Interfaces\CommandInterface;
+
+abstract class CommandAbstract implements CommandInterface
 {
     /**
      * @var bool $providesHandler

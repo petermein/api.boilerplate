@@ -178,7 +178,7 @@ class MediaTypeBuilder
     {
         $pattern = "#(@[a-zA-Z]+\s*[a-zA-Z0-9, ()_].*)#";
         $matches = [];
-        preg_match_all($pattern, $docBlock, $matches, PREG_PATTERN_ORDER);
+        \Safe\preg_match_all($pattern, $docBlock, $matches, PREG_PATTERN_ORDER);
 
         dd($matches);
 

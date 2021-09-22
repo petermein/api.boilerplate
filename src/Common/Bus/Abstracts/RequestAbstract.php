@@ -10,8 +10,17 @@ use Api\Common\DTO\DataTransferObject;
 
 abstract class RequestAbstract extends DataTransferObject implements RequestInterface
 {
+    /**
+     * @var bool
+     */
     protected $providesHandler = true;
+    /**
+     * @var bool
+     */
     protected $providesValidators = true;
+    /**
+     * @var bool
+     */
     protected $providesSenders = true;
 
     final public function getData(): array

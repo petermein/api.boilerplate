@@ -1,4 +1,4 @@
-#Exception handling#
+# Exception handling#
 
-Base on package
+Based on package
 https://github.com/cerbero90/exception-handler
