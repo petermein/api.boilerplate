@@ -6,7 +6,7 @@ namespace Api\Common\OpenApi\Traits;
 
 trait HasStatusCodeTrait
 {
-    protected int $statusCode;
+    protected int $statusCode = 200;
 
     public function getStatusCode(): int
     {

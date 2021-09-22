@@ -26,10 +26,4 @@ final class ExampleDto extends DataTransferObject
      * @var bool
      */
     public bool $boolean;
-//
-//    /**
-//     * @var string[]
-//     */
-//    public array $array1;
-
 }

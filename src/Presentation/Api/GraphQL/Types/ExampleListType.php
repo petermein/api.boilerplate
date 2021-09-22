@@ -4,16 +4,17 @@ declare(strict_types=1);
 
 namespace Api\Presentation\Api\GraphQL\Types;
 
-use Api\Application\Example\Models\ExampleDto;
+use Api\Application\Example\Models\ExampleListDto;
 use GraphQL\Type\Definition\Type;
+use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Type as GraphQLType;
 
-final class ExampleType extends GraphQLType
+final class ExampleListType extends GraphQLType
 {
     protected $attributes = [
-        'name' => 'Example',
+        'name' => 'ExampleList',
         'description' => 'A type',
-        'model' => ExampleDto::class
+        'model' => ExampleListDto::class
     ];
 
     public function fields(): array
@@ -23,6 +24,10 @@ final class ExampleType extends GraphQLType
                 'type' => Type::nonNull(Type::int()),
                 'description' => 'The id of the user',
                 'alias' => 'id',
+            ],
+            'examples' => [
+                'type' => Type::nonNull(Type::listOf(Type::nonNull(GraphQL::type('example')))),
+                'description' => 'The id of the user',
             ],
         ];
     }

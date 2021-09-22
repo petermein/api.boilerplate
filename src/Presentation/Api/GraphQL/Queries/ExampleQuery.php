@@ -37,7 +37,7 @@ final class ExampleQuery extends Query
      */
     public function type(): Type
     {
-        return GraphQL::type('example');
+        return GraphQL::type('example_list');
     }
 
     /**
@@ -63,6 +63,8 @@ final class ExampleQuery extends Query
         $query = new GetAllExamplesQuery();
         $query->id = $args['id'];
 
-        return $this->bus->send($query);
+        $root = $this->bus->send($query);
+
+        return $root;
     }
 }

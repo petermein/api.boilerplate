@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Api\Application\Example\Queries\GetAllQuery;
 
+use Api\Application\Example\Models\ExampleDto;
 use Api\Application\Example\Models\ExampleListDto;
 use Api\Application\Example\Repositories\ExampleRepository;
 use Api\Common\Bus\Interfaces\HandlerInterface;
@@ -37,9 +38,22 @@ final class GetAllExamplesQueryHandler implements HandlerInterface
         $example = $this->exampleRepository->find($getAllQuery->id);
 
         $dto = new ExampleListDto([
-            'id' => $example->id
+            'id' => $example->id,
+            'examples' => [
+                new ExampleDto([
+                    'id' => 12,
+                    'string' => 'string',
+                    'double' => 1.23,
+                    'boolean' => true
+                ]),
+                new ExampleDto([
+                    'id' => 13,
+                    'string' => 'string',
+                    'double' => 1.23,
+                    'boolean' => true
+                ])
+            ]
         ]);
-        dd(1);
 
         return $dto;
     }

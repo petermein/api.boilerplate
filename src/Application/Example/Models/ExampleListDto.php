@@ -14,30 +14,11 @@ final class ExampleListDto extends DataTransferObject
      * @var integer
      */
     public int $id;
-    /**
-     * @var string
-     */
-    public string $string;
-    /**
-     * @var float
-     */
-    public float $double;
-    /**
-     * @var bool
-     */
-    public bool $boolean;
+
 
     /**
-     * @var string[]
+     * @var array|ExampleDto[]
      */
-    public array $array1;
-    /**
-     * @var ExampleDto[]|array
-     */
-    public array $array2;
+    public array $examples;
 
-    /**
-     * @var ExampleDto
-     */
-    public ExampleDto $object;
 }
