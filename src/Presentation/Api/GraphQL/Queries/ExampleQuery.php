@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace Api\Presentation\Api\GraphQL\Queries;
 
 use Api\Application\Example\Queries\GetAllQuery\GetAllExamplesQuery;

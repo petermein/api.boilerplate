@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Api\Common\OpenApi\Commands;
-
 
 use Api\Common\OpenApi\Analyzers\VersionAnalyzer;
 use Api\Common\OpenApi\Builders\OpenApiBuilder;
@@ -59,7 +57,6 @@ class GenerateOpenApiCommand extends Command
         $versions = $this->versionAnalyzer->determineVersions();
 
         foreach ($versions as $version) {
-
             $spec = $openApiBuilder->build($version);
 
             if (!$spec->validate()) {

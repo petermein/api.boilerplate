@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Api\Common\DTO;
-
 
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Support\ServiceProvider;
@@ -15,7 +13,6 @@ class DataTransferServiceProvider extends ServiceProvider
     {
         //Exception formatting for DTO object
         $this->app->make(ExceptionHandler::class)->renderer(function (DataTransferObjectError $e, $request) {
-
             if (Str::contains($e->getMessage(), 'not found on')) {
                 return $this->renderUnknownProperties($e);
             }
@@ -61,6 +58,4 @@ class DataTransferServiceProvider extends ServiceProvider
             'code' => 422
         ]);
     }
-
-
 }

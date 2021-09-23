@@ -1,22 +1,18 @@
 <?php
 
-
 namespace Api\Common\OpenApi\Builders;
-
 
 use cebe\openapi\spec\Server;
 use cebe\openapi\spec\ServerVariable;
 
 class ServerBuilder
 {
-
     public function generateGlobalServerlist(): array
     {
         $configServers = config('openapi.servers', []);
         $servers = [];
 
         foreach ($configServers as $server) {
-
             $server['variables'] = $this->buildServerVariables($server['variables'] ?? []);
             $servers[] = $this->buildServer($server);
         }
@@ -37,5 +33,4 @@ class ServerBuilder
     {
         return new Server($serverData);
     }
-
 }

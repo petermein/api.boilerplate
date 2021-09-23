@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Api\Application\Auth\Models;
-
 
 use Api\Domain\Models\User as DomainUser;
 use Illuminate\Contracts\Auth\Authenticatable;

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Api\Common\OpenApi\Builders;
-
 
 use Api\Common\DTO\DataTransferObject;
 use Api\Common\OpenApi\Exceptions\NotAllowedException;
@@ -113,7 +111,7 @@ class MediaTypeBuilder
                         break;
                     }
                 }
-            } else if ($type instanceof Array_) {
+            } elseif ($type instanceof Array_) {
                 /** @var Object_|Scalar $object */
                 $object = $type->getValueType();
             }
@@ -135,8 +133,6 @@ class MediaTypeBuilder
             return [
                 (string)$object
             ];
-
-
         }
 
         //Fil an enum
@@ -170,8 +166,6 @@ class MediaTypeBuilder
         return $this->buildMockObjectResponseObject((string)$valueType->getFqsen());
 
         //Manual binding
-
-
     }
 
     protected function retrieveArrayReturnTypeFromDocBlock($docBlock)
@@ -181,7 +175,5 @@ class MediaTypeBuilder
         \Safe\preg_match_all($pattern, $docBlock, $matches, PREG_PATTERN_ORDER);
 
         dd($matches);
-
     }
-
 }

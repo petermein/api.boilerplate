@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Api\Presentation\Api;
 
-
 use Closure;
 use Illuminate\Contracts\Auth\Factory as Auth;
 

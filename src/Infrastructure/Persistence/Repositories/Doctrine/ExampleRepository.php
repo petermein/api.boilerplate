@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace Api\Infrastructure\Persistence\Repositories\Doctrine;
 
 use Api\Application\Example\Repositories\ExampleRepository as IExampleRepository;
@@ -17,7 +16,7 @@ final class ExampleRepository extends BaseDoctrineRepository implements IExample
         $object = $this->genericRepository->find($id);
 
         if ($object === null) {
-            throw ModelNotFoundException::modelNotFound((new Example), $id);
+            throw ModelNotFoundException::modelNotFound((new Example()), $id);
         }
 
         return $object;

@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace Api\Common\Bus\Locators;
 
 use Api\Common\Bus\Abstracts\RequestAbstract;

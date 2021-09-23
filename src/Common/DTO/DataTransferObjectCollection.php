@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-
 namespace Api\Common\DTO;
-
 
 use Api\Common\OpenApi\Contracts\HasDescription;
 use Api\Common\OpenApi\Contracts\HasStatusCode;

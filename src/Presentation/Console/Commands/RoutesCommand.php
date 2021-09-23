@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Api\Presentation\Console\Commands;
 
 use Illuminate\Console\Command;
@@ -9,7 +8,6 @@ use Symfony\Component\Console\Input\InputOption;
 
 class RoutesCommand extends Command
 {
-
     /**
      * The console command name.
      *
@@ -108,8 +106,9 @@ class RoutesCommand extends Command
         foreach ($routeCollection as $route) {
             $controller = $this->getController($route['action']);
             // Show class name without namesapce
-            if ($this->option('compact') && $controller !== 'None')
+            if ($this->option('compact') && $controller !== 'None') {
                 $controller = \Safe\substr($controller, strrpos($controller, '\\') + 1);
+            }
 
             $rows[] = [
                 'verb' => $route['method'],

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Api\Common\OpenApi\Builders;
-
 
 use cebe\openapi\spec\Schema;
 
@@ -12,7 +10,6 @@ class SchemaBuilder
 
     public function __construct()
     {
-
     }
 
     public function buildSchema($class): Schema
@@ -75,5 +72,4 @@ class SchemaBuilder
 
         return new Schema($schemaData);
     }
-
 }

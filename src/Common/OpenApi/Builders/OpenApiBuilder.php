@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Api\Common\OpenApi\Builders;
-
 
 use cebe\openapi\spec\OpenApi;
 
@@ -29,7 +27,6 @@ class OpenApiBuilder
      */
     public function __construct(InfoBuilder $infoBuilder, ServerBuilder $serverBuilder, PathBuilder $pathBuilder)
     {
-
         $this->infoBuilder = $infoBuilder;
         $this->serverBuilder = $serverBuilder;
         $this->pathBuilder = $pathBuilder;

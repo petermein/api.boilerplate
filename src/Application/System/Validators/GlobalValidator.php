@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace Api\Application\System\Validators;
 
 use Api\Common\Bus\Abstracts\ValidatorAbstract;

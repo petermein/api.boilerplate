@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Api\Common\OpenApi\Builders;
-
 
 use Api\Common\OpenApi\Contracts\DescribableObject;
 use Api\Common\OpenApi\Contracts\HasDescription;
@@ -81,6 +79,4 @@ class ResponseBuilder
 //        $reflection = new ReflectionClass($betterReflectionClass)
         return null;
     }
-
-
 }

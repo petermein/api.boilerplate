@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Api\Common\OpenApi\Builders;
-
 
 use cebe\openapi\spec\Info;
 
@@ -24,7 +22,6 @@ class InfoBuilder
      */
     public function __construct(ContactsBuilder $contactsBuilder, LicenseBuilder $licenseBuilder)
     {
-
         $this->contactsBuilder = $contactsBuilder;
         $this->licenseBuilder = $licenseBuilder;
     }
@@ -39,5 +36,4 @@ class InfoBuilder
 
         return new Info($configInfo);
     }
-
 }

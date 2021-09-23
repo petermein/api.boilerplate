@@ -40,6 +40,4 @@ class User
     {
         return isset(\Safe\array_flip($this->scope)[$scope]);
     }
-
 }//end class
-

@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace Api\Common\Bus\Abstracts;
 
 use Api\Common\Bus\Interfaces\RequestInterface;
@@ -27,7 +26,7 @@ abstract class RequestAbstract extends DataTransferObject implements RequestInte
     {
         //Create an array from all public variables
         //Remove null values for validation
-        return array_filter(get_object_vars($this), fn($value) => !is_null($value) && $value !== '');
+        return array_filter(get_object_vars($this), fn ($value) => !is_null($value) && $value !== '');
     }
 
     public function handler(): ?string

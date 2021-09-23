@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace Api\Application\Example\Queries\GetAllQuery;
 
 use Symfony\Component\Messenger\Envelope;

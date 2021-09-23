@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Api\Common\ExceptionHandling;
 
-
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Throwable;
 

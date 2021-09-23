@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Api\Common\OpenApi\Analyzers;
-
 
 use Illuminate\Support\Collection;
 use Laravel\Lumen\Application;
@@ -37,7 +35,4 @@ class RouteAnalyzer
 
         return $routeCollection;
     }
-
-
-
 }

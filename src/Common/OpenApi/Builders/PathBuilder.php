@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Api\Common\OpenApi\Builders;
-
 
 use Api\Common\OpenApi\Analyzers\RouteAnalyzer;
 use Api\Common\OpenApi\Contracts\HasDescription;
@@ -40,11 +38,12 @@ class PathBuilder
      * @param OperationBuilder $operationBuilder
      * @param RouteHelper $routeHelper
      */
-    public function __construct(Container        $application,
-                                RouteAnalyzer    $routeAnalyzer,
-                                OperationBuilder $operationBuilder,
-                                RouteHelper      $routeHelper)
-    {
+    public function __construct(
+        Container $application,
+        RouteAnalyzer $routeAnalyzer,
+        OperationBuilder $operationBuilder,
+        RouteHelper $routeHelper
+    ) {
         $this->application = $application;
         $this->routeAnalyzer = $routeAnalyzer;
         $this->operationBuilder = $operationBuilder;
@@ -86,11 +85,11 @@ class PathBuilder
             $pathData['summary'] = $baseController->getSummary();
         }
 
-        $pathItem = new PathItem($pathData
+        $pathItem = new PathItem(
+            $pathData
 
 //TODO:            'servers' => [Server::class],
 //TODO:            'parameters' => [Parameter::class],
-
         );
 
         foreach ($routes as $route) {
@@ -123,6 +122,8 @@ class PathBuilder
     /**
      * @param array $action
      * @return string
+     *
+     * @throws \Safe\Exceptions\StringsException
      */
     protected function getAction(array $action)
     {
@@ -130,11 +131,11 @@ class PathBuilder
             $data = $action['uses'];
             if (($pos = strpos($data, "@")) !== false) {
                 return \Safe\substr($data, $pos + 1);
-            } else {
-                return "METHOD NOT FOUND";
             }
-        } else {
-            return 'Closure';
+
+            return "METHOD NOT FOUND";
         }
+
+        return 'Closure';
     }
 }

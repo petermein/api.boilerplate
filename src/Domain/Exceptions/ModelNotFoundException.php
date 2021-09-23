@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Api\Domain\Exceptions;
 
-
 final class ModelNotFoundException extends Exception
 {
     public int $statusCode = 404;
@@ -15,5 +14,4 @@ final class ModelNotFoundException extends Exception
             \Safe\sprintf('Model of class %s with identifier %s not found.', get_class($object), $identifier)
         );
     }
-
 }

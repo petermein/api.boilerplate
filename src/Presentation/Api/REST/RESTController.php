@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace Api\Presentation\Api\REST;
 
 use Api\Application\Auth\Models\User;
@@ -19,7 +18,8 @@ use Laravel\Lumen\Routing\Controller as LumenController;
 
 abstract class RESTController extends LumenController implements HasDescription, HasSummary
 {
-    use HasDescriptionTrait, HasSummaryTrait;
+    use HasDescriptionTrait;
+    use HasSummaryTrait;
 
     /**
      * @var Bus
@@ -53,6 +53,4 @@ abstract class RESTController extends LumenController implements HasDescription,
     {
         return $this->request->user();
     }
-
-
 }

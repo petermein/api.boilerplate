@@ -1,15 +1,12 @@
 <?php
 
-
 namespace Api\Common\OpenApi\Utils;
-
 
 use Api\Common\Bus\Interfaces\RequestInterface;
 use Illuminate\Support\Collection;
 
 class RouteHelper
 {
-
     public function reflectOnAction(array $action): array
     {
         $class = $this->getController($action);

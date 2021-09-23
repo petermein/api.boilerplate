@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Api\Presentation\Console\Commands;
 
 use Api\Common\Bus\Interfaces\RequestInterface;
@@ -18,7 +17,6 @@ use Symfony\Component\Console\Input\InputOption;
  */
 class OpenApiListCommand extends Command
 {
-
     /**
      * The console command name.
      *

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Api\Common\OpenApi\Builders;
-
 
 use cebe\openapi\spec\Operation;
 
@@ -30,5 +28,4 @@ class OperationBuilder
             ['responses' => $responses]
         );
     }
-
 }
