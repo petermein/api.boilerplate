@@ -44,6 +44,7 @@ final class HandlerDecorator implements ExceptionHandler
      */
     public function report(Throwable $e)
     {
+        dd($e);
         foreach ($this->repository->getReportersByException($e) as $reporter) {
             if ($report = $reporter($e)) {
                 return $report;

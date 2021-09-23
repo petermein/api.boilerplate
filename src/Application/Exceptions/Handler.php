@@ -28,51 +28,38 @@ final class Handler extends ExceptionHandler
     ];
 
     /**
-     * Report or log an exception.
-     *
-     * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
-     *
-     * @param \Throwable $exception
-     * @return void
-     *
-     * @throws \Exception
-     */
-    public function report(Throwable $exception)
-    {
-        parent::report($exception);
-    }
-
-    /**
      * @param \Illuminate\Http\Request $request
      * @param Throwable|Exception $exception
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response|\Symfony\Component\HttpFoundation\Response
      * @throws Throwable
      */
-    public function render($request, Throwable|Exception $exception)
-    {
+    public function render(
+        $request,
+        Throwable|Exception $e
+    ) {
         //Catch nested handler errors in cqrs
-        if ($exception instanceof HandlerFailedException) {
-            $exception = $exception->getPrevious();
+        if ($e instanceof HandlerFailedException) {
+            $e = $e->getPrevious();
         }
 
-        if ($exception instanceof ValidationException) {
+        if ($e instanceof ValidationException) {
             return response()->json([
-                'error' => true,
-                'message' => $exception->getMessage(),
-                'errors' => $exception->errors(),
-                'code' => 422
-            ], 422);
+                                        'error' => true,
+                                        'message' => $e->getMessage(),
+                                        'errors' => $e->errors(),
+                                        'code' => 422
+                                    ], 422);
         }
 
         if ($request->expectsJson()) {
             return response()->json([
-                'error' => true,
-                'message' => $exception->getMessage(),
-                'errors' => [],
-                'code' => $exception->statusCode ?? 500
-            ], $exception->statusCode ?? 500);
+                                        'error' => true,
+                                        'message' => $e->getMessage(),
+                                        'errors' => [],
+                                        'code' => $e->statusCode ?? 500
+                                    ], $e->statusCode ?? 500);
         }
 
-        return parent::render($request, $exception);
+        return parent::render($request, $e);
     }
 }

@@ -6,14 +6,14 @@ namespace Api\Application\Example\Queries\GetAllQuery;
 
 use Api\Application\Example\Models\ExampleDto;
 use Api\Application\System\Interfaces\HasRequestMapping;
-use Api\Common\Bus\Abstracts\RequestAbstract;
+use Api\Common\Bus\Abstracts\QueryAbstract;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class GetAllExamplesQuery
  * @package Api\Application\Example\Queries\GetAllQuery
  */
-final class GetAllExamplesQuery extends RequestAbstract implements HasRequestMapping
+final class GetAllExamplesQuery extends QueryAbstract implements HasRequestMapping
 {
     /**
      * @var int|null

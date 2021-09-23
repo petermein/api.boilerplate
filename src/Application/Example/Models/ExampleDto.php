@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Api\Application\Example\Models;
 
 use Api\Common\DTO\DataTransferObject;
+use Api\Domain\Enums\TestEnum;
 
 final class ExampleDto extends DataTransferObject
 {
@@ -26,4 +27,8 @@ final class ExampleDto extends DataTransferObject
      * @var bool
      */
     public bool $boolean;
+    /**
+     * @var \Api\Domain\Enums\TestEnum
+     */
+    public TestEnum $enum;
 }

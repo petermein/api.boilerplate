@@ -13,7 +13,9 @@ use Api\Common\OpenApi\Traits\HasStatusCodeTrait;
 use Illuminate\Contracts\Support\Responsable;
 use Spatie\DataTransferObject\DataTransferObjectError;
 
-abstract class DataTransferObject extends \Spatie\DataTransferObject\DataTransferObject implements HasDescription, HasStatusCode, Responsable
+abstract class DataTransferObject extends \Spatie\DataTransferObject\DataTransferObject implements HasDescription,
+                                                                                                   HasStatusCode,
+                                                                                                   Responsable
 {
     use HasDescriptionTrait;
     use HasStatusCodeTrait;
@@ -76,6 +78,11 @@ abstract class DataTransferObject extends \Spatie\DataTransferObject\DataTransfe
 
     public function toResponse($request)
     {
-        return response()->json($this, $this->getStatusCode());
+        //TODO: parse docblock return type enumns to metadata, and add defaults
+
+        return response()->json([
+                                    'data' => $this->toArray(),
+                                    'meta' => []
+                                ], $this->getStatusCode());
     }
 }

@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Api\Application\Example\Queries\GetAllQuery;
 
+use Api\Common\Bus\Abstracts\ListenerAbstract;
 use Symfony\Component\Messenger\Envelope;
-use Symfony\Component\Messenger\Transport\Sender\SenderInterface;
 
 /**
  * Class GetAllExamplesQueryListener
  * @package Api\Application\Example\Queries\GetAllQuery
  */
-final class GetAllExamplesQueryListener implements SenderInterface
+final class GetAllExamplesQueryListener extends ListenerAbstract
 {
     public function __construct()
     {

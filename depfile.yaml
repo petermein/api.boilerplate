@@ -3,6 +3,7 @@ paths:
 exclude_files:
   - .*test.*
 layers:
+  ##Clean architecture
   - name: Common
     collectors:
       - type: directory
@@ -23,6 +24,7 @@ layers:
     collectors:
       - type: directory
         regex: src/Infrastructure/.*
+
 ruleset:
   Common: ~
   Domain: ~
