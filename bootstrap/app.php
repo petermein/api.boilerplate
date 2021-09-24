@@ -78,8 +78,8 @@ $app->configure('app');
 // ]);
 
 $app->routeMiddleware([
-    'auth' => \Api\Presentation\Api\Authenticate::class
-]);
+                          'auth' => \Api\Presentation\Api\Authenticate::class
+                      ]);
 
 /*
 |--------------------------------------------------------------------------
@@ -121,12 +121,16 @@ $app->register(Api\Application\ApplicationServiceProvider::class);
 $app->register(Api\Presentation\Api\GraphQL\GraphQLServiceProvider::class);
 $app->register(Api\Presentation\Api\REST\RestServiceProvider::class);
 
+if ($app->environment('local')) {
+    $app->register(Api\Presentation\Api\DebugServiceProvider::class);
+}
+
 /**
  * Root
  */
 $app->router->group([
-    'middleware' => []
-], function ($router) {
+                        'middleware' => []
+                    ], function ($router) {
     include(__DIR__ . '/../src/Presentation/routes.php');
 });
 

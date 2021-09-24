@@ -27,10 +27,10 @@ final class RestServiceProvider extends ServiceProvider
             || Str::startsWith($path, ['/api'])
         ) {
             $this->app->router->group([
-                'prefix' => 'api',
-                'namespace' => 'Api\Presentation\Api\REST',
-                'middleware' => []
-            ], function ($router) {
+                                          'prefix' => 'api',
+                                          'namespace' => 'Api\Presentation\Api\REST',
+                                          'middleware' => []
+                                      ], function ($router) {
                 include(__DIR__ . '/routes/routes.v1.php');
             });
         }

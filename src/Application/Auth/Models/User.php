@@ -13,6 +13,13 @@ use Illuminate\Contracts\Auth\Authenticatable;
  */
 class User extends DomainUser implements Authenticatable
 {
+    public function __construct(...$args)
+    {
+        $this->id = $args['id'];
+        $this->name = $args['name'];
+        $this->scope = $args['scope'];
+    }
+
     public function getAuthIdentifierName(): string
     {
         return $this->name;
@@ -41,5 +48,17 @@ class User extends DomainUser implements Authenticatable
     public function getRememberTokenName()
     {
         //Not implemented in stateless auth configuration
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'scope' => $this->scope
+        ];
     }
 }

@@ -68,6 +68,7 @@ final class ValidationMiddleware implements MiddlewareInterface
                     $context + ['validator' => \get_class($validator)]
                 );
 
+
                 $factoryValidator = $this->factory->make(
                     $query->getData(),
                     $validator->rules(),

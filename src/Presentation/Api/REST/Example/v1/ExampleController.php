@@ -21,8 +21,6 @@ final class ExampleController extends RESTController
 
     public function getAll(GetAllExamplesQuery $request, LoggerInterface $logger): ExampleListDto
     {
-        $logger->debug($request->all());
-
         return $this->send($request);
     }
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Api\Presentation\Api\REST;
 
-use Api\Application\Auth\Models\User;
+use Api\Application\Auth\Models\UserDto;
 use Api\Common\Bus\Buses\Bus;
 use Api\Common\Bus\Interfaces\RequestInterface;
 use Api\Common\OpenApi\Contracts\DescribableObject;
@@ -49,7 +49,7 @@ abstract class RESTController extends LumenController implements HasDescription,
         return $this->bus->send($abstract);
     }
 
-    final public function user(): User
+    final public function user(): UserDto
     {
         return $this->request->user();
     }

@@ -54,11 +54,13 @@ final class ApplicationValidatorLocator implements ValidatorLocatorInterface
         //Loop over found a validations description in the model, run over validators
         foreach ($validatorDescriptions ?? [] as $validatorDescription) {
             if (!\in_array($validatorDescription, $seen, true)) {
-                if (!$this->container->make($validatorDescription)) {
-                    throw new RuntimeException(\Safe\sprintf(
-                        'Invalid validator configuration: validator "%s" is not in the validator locator.',
-                        $validatorDescription
-                    ));
+                if (!$this->container->has($validatorDescription)) {
+                    throw new RuntimeException(
+                        \Safe\sprintf(
+                            'Invalid validator configuration: validator "%s" is not in the validator locator.',
+                            $validatorDescription
+                        )
+                    );
                 }
 
                 $seen[] = $validatorDescription;
@@ -72,10 +74,12 @@ final class ApplicationValidatorLocator implements ValidatorLocatorInterface
             foreach ($this->validators[$type] ?? [] as $validatorDescription) {
                 if (!\in_array($validatorDescription, $seen, true)) {
                     if (!$this->container->make($validatorDescription)) {
-                        throw new RuntimeException(\Safe\sprintf(
-                            'Invalid validator configuration: validator "%s" is not in the validator locator.',
-                            $validatorDescription
-                        ));
+                        throw new RuntimeException(
+                            \Safe\sprintf(
+                                'Invalid validator configuration: validator "%s" is not in the validator locator.',
+                                $validatorDescription
+                            )
+                        );
                     }
 
                     $seen[] = $validatorDescription;

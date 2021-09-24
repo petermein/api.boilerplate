@@ -33,7 +33,9 @@ final class PersistenceServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(\LaravelDoctrine\ORM\DoctrineServiceProvider::class);
-
+        $this->app->register(\LaravelDoctrine\Extensions\BeberleiExtensionsServiceProvider::class);
+        //TODO only dev?
+        $this->app->register(\LaravelDoctrine\Migrations\MigrationsServiceProvider::class);
 
         //TODO move to defered provider
         //Example

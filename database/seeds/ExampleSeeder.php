@@ -5,14 +5,12 @@ declare(strict_types=1);
 
 use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Database\Seeder;
-use LaravelDoctrine\ORM\Facades\EntityManager;
 
 /**
  * Class ExampleSeeder
  */
 class ExampleSeeder extends Seeder
 {
-
     /**
      * Run the database seeds.
      *
@@ -27,8 +25,9 @@ class ExampleSeeder extends Seeder
 
         //Get dirty repository
 
-        /** @var EntityManager $em */
-        $em = app()->make(EntityManagerInterface::class);
+        /** @var EntityManagerInterface $em */
+        $em = app()->make('em');
         $em->persist($example);
+        $em->flush();
     }//end run()
 }//end class
