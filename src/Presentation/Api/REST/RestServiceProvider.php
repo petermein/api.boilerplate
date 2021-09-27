@@ -19,8 +19,8 @@ final class RestServiceProvider extends ServiceProvider
             || Str::startsWith($path, ['/api/doc'])
         ) {
             //Swagger lume removed, disabled in progress of new openapi
-//            $this->app->configure('swagger-lume');
-//            $this->app->register(\SwaggerLume\ServiceProvider::class);
+            $this->app->configure('swagger-lume');
+            $this->app->register(\SwaggerLume\ServiceProvider::class);
         }
 
         if ($this->app->runningInConsole()

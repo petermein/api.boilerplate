@@ -27,10 +27,175 @@
         }
     ],
     "paths": {
+        "\/api\/v1\/me": {
+            "summary": "Me",
+            "description": "Me description",
+            "get": {
+                "parameters": [],
+                "requestBody": {
+                    "description": "MeQuery",
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": []
+                            },
+                            "example": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "UserDto",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "nullable": false
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "nullable": true
+                                        },
+                                        "scopes": {
+                                            "type": "array",
+                                            "nullable": false
+                                        },
+                                        "age": {
+                                            "type": "integer",
+                                            "nullable": true
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "id": 1,
+                                    "name": "string",
+                                    "scopes": [],
+                                    "age": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "Auth"
+                ]
+            }
+        },
+        "\/api\/v1\/test\/{id}": {
+            "summary": "Me",
+            "description": "Me description",
+            "get": {
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "uri",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "MeQuery",
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": []
+                            },
+                            "example": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "UserDto",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "nullable": false
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "nullable": true
+                                        },
+                                        "scopes": {
+                                            "type": "array",
+                                            "nullable": false
+                                        },
+                                        "age": {
+                                            "type": "integer",
+                                            "nullable": true
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "id": 1,
+                                    "name": "string",
+                                    "scopes": [],
+                                    "age": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "Auth"
+                ]
+            }
+        },
         "\/api\/v1\/example": {
             "summary": "Examples",
             "description": "Examples description",
             "get": {
+                "parameters": [],
+                "requestBody": {
+                    "description": "GetAllExamplesQuery",
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "integer",
+                                        "nullable": true
+                                    },
+                                    "number": {
+                                        "type": "integer",
+                                        "nullable": true
+                                    },
+                                    "example": {
+                                        "nullable": true
+                                    },
+                                    "idPrefixed": {
+                                        "type": "string",
+                                        "nullable": true
+                                    }
+                                }
+                            },
+                            "example": {
+                                "id": 1,
+                                "number": 1,
+                                "example": {
+                                    "id": 1,
+                                    "string": "string",
+                                    "double": 1.23,
+                                    "boolean": true,
+                                    "enum": "test"
+                                },
+                                "idPrefixed": "string"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "ExampleListDto",
@@ -43,60 +208,73 @@
                                             "type": "integer",
                                             "nullable": false
                                         },
-                                        "string": {
-                                            "type": "string",
-                                            "nullable": false
-                                        },
-                                        "double": {
-                                            "type": "number",
-                                            "nullable": false
-                                        },
-                                        "boolean": {
-                                            "type": "boolean",
-                                            "nullable": false
-                                        },
-                                        "array1": {
+                                        "examples": {
                                             "type": "array",
-                                            "nullable": false
-                                        },
-                                        "array2": {
-                                            "type": "array",
-                                            "nullable": false
-                                        },
-                                        "object": {
                                             "nullable": false
                                         }
                                     }
                                 },
                                 "example": {
                                     "id": 1,
-                                    "string": "string",
-                                    "double": 1.23,
-                                    "boolean": true,
-                                    "array1": [
-                                        "string"
-                                    ],
-                                    "array2": [
+                                    "examples": [
                                         {
                                             "id": 1,
                                             "string": "string",
                                             "double": 1.23,
-                                            "boolean": true
+                                            "boolean": true,
+                                            "enum": "test"
                                         }
-                                    ],
-                                    "object": {
-                                        "id": 1,
-                                        "string": "string",
-                                        "double": 1.23,
-                                        "boolean": true
-                                    }
+                                    ]
                                 }
                             }
                         }
                     }
-                }
+                },
+                "tags": [
+                    "Example"
+                ]
             },
             "post": {
+                "parameters": [],
+                "requestBody": {
+                    "description": "GetAllExamplesQuery",
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "integer",
+                                        "nullable": true
+                                    },
+                                    "number": {
+                                        "type": "integer",
+                                        "nullable": true
+                                    },
+                                    "example": {
+                                        "nullable": true
+                                    },
+                                    "idPrefixed": {
+                                        "type": "string",
+                                        "nullable": true
+                                    }
+                                }
+                            },
+                            "example": {
+                                "id": 1,
+                                "number": 1,
+                                "example": {
+                                    "id": 1,
+                                    "string": "string",
+                                    "double": 1.23,
+                                    "boolean": true,
+                                    "enum": "test"
+                                },
+                                "idPrefixed": "string"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "ExampleListDto",
@@ -109,58 +287,31 @@
                                             "type": "integer",
                                             "nullable": false
                                         },
-                                        "string": {
-                                            "type": "string",
-                                            "nullable": false
-                                        },
-                                        "double": {
-                                            "type": "number",
-                                            "nullable": false
-                                        },
-                                        "boolean": {
-                                            "type": "boolean",
-                                            "nullable": false
-                                        },
-                                        "array1": {
+                                        "examples": {
                                             "type": "array",
-                                            "nullable": false
-                                        },
-                                        "array2": {
-                                            "type": "array",
-                                            "nullable": false
-                                        },
-                                        "object": {
                                             "nullable": false
                                         }
                                     }
                                 },
                                 "example": {
                                     "id": 1,
-                                    "string": "string",
-                                    "double": 1.23,
-                                    "boolean": true,
-                                    "array1": [
-                                        "string"
-                                    ],
-                                    "array2": [
+                                    "examples": [
                                         {
                                             "id": 1,
                                             "string": "string",
                                             "double": 1.23,
-                                            "boolean": true
+                                            "boolean": true,
+                                            "enum": "test"
                                         }
-                                    ],
-                                    "object": {
-                                        "id": 1,
-                                        "string": "string",
-                                        "double": 1.23,
-                                        "boolean": true
-                                    }
+                                    ]
                                 }
                             }
                         }
                     }
-                }
+                },
+                "tags": [
+                    "Example"
+                ]
             }
         }
     }

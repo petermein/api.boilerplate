@@ -14,7 +14,9 @@ final class UserDto extends DataTransferObject
 {
     public int $id;
 
-    public string $name;
+    public ?string $name;
 
-    public array $scope;
+    public array $scopes;
+
+    public ?int $age;
 }

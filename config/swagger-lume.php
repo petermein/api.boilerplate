@@ -58,14 +58,14 @@ return [
         | Absolute path to location where parsed swagger annotations will be stored
         |--------------------------------------------------------------------------
          */
-        'docs' => storage_path('api-docs'),
+        'docs' => storage_path('docs'),
 
         /*
         |--------------------------------------------------------------------------
         | File name of the generated json documentation file
         |--------------------------------------------------------------------------
         */
-        'docs_json' => 'api-docs.json',
+        'docs_json' => 'openapi.v1.json',
 
         /*
         |--------------------------------------------------------------------------

@@ -65,8 +65,6 @@ class SchemaBuilder
                 break;
         }
 
-        dump($type->getName());
-
         $schemaData['nullable'] = $type->allowsNull();
 
 

@@ -17,7 +17,7 @@ final class ExampleListDto extends DataTransferObject
 
 
     /**
-     * @var array|ExampleDto[]
+     * @var ExampleDto[]
      */
     public array $examples;
 }

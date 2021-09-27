@@ -11,6 +11,11 @@ $router->group([
         'me',
         'MeController@getAll'
     );
+
+    $router->get(
+        'test/{id}',
+        'MeController@getAll'
+    );
 });
 
 $router->group([

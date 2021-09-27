@@ -92,10 +92,14 @@ class PathBuilder
 //TODO:            'parameters' => [Parameter::class],
         );
 
+        $tag = $this->extractTagFromClass($controllerClass);
         foreach ($routes as $route) {
             $method = strtolower($route['method']);
 
-            $pathItem->$method = $this->operationBuilder->buildOperation($route);
+            $operation = $this->operationBuilder->buildOperation($route);
+            $operation->tags = [$tag];
+
+            $pathItem->$method = $operation;
         }
 
         return $pathItem;
@@ -104,6 +108,12 @@ class PathBuilder
     public function instantiateController(string $controllerClass)
     {
         return $this->application->make($controllerClass);
+    }
+
+    protected function extractTagFromClass($class)
+    {
+        //TODO move to dynamic
+        return explode("\\", str_replace("Api\\Presentation\\Api\\REST\\", "", $class))[0] ?? null;
     }
 
     /**

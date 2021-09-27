@@ -23,7 +23,9 @@ class RouteAnalyzer
 
     public function getRouteListForVersion($version): Collection
     {
-        $routeCollection = collect(property_exists($this->app, 'router') ? $this->app->router->getRoutes() : $this->app->getRoutes());
+        $routeCollection = collect(
+            property_exists($this->app, 'router') ? $this->app->router->getRoutes() : $this->app->getRoutes()
+        );
 
         $routeCollection = $routeCollection
             //Version filtering

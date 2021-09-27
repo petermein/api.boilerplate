@@ -16,8 +16,9 @@ class User extends DomainUser implements Authenticatable
     public function __construct(...$args)
     {
         $this->id = $args['id'];
-        $this->name = $args['name'];
-        $this->scope = $args['scope'];
+        $this->name = $args['name'] ?? null;
+        $this->scopes = $args['scopes'];
+        !isset($args['age']) ? null : $this->setAge($args['age']);
     }
 
     public function getAuthIdentifierName(): string
@@ -58,7 +59,8 @@ class User extends DomainUser implements Authenticatable
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'scope' => $this->scope
+            'scopes' => $this->scopes,
+            'age' => $this->age,
         ];
     }
 }

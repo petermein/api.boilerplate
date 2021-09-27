@@ -24,10 +24,20 @@ class RouteHelper
         $requests = new Collection();
 
         foreach ($params as $param) {
-            $reflectionClass = $param->getDeclaringClass();
-            if ($reflectionClass === null) {
+            $reflectionParameter = $param->getType();
+
+            if ($reflectionParameter === null) {
                 continue;
             }
+
+            if ($reflectionParameter instanceof \ReflectionNamedType) {
+                $class = $reflectionParameter->getName();
+            }
+
+            if ($reflectionParameter instanceof \ReflectionUnionType) {
+            }
+
+            $reflectionClass = new \ReflectionClass($class);
 
             $interfaces = $reflectionClass->getInterfaces();
 

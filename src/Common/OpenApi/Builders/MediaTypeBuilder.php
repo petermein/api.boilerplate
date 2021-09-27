@@ -38,7 +38,6 @@ class MediaTypeBuilder
 
         $mockObject = $this->buildMockObjectResponseObject($class);
 
-
         $mediaTypeData['example'] = $mockObject;
         $mediaTypeData['schema'] = $this->schemaBuilder->buildSchema($class);
 
@@ -71,8 +70,11 @@ class MediaTypeBuilder
         return $object;
     }
 
-    private function generateDataByType(?\ReflectionClass $class, ?\ReflectionProperty $property, string $typeName = null)
-    {
+    private function generateDataByType(
+        ?\ReflectionClass $class,
+        ?\ReflectionProperty $property,
+        string $typeName = null
+    ) {
         $type = $property->getType();
         $typeName = $typeName ?? $type->getName();
 
@@ -91,14 +93,20 @@ class MediaTypeBuilder
         }
 
         //Array check docblock
-        if ($typeName == 'array') {
+        if ($typeName === 'array') {
             $factory = \phpDocumentor\Reflection\DocBlockFactory::createInstance();
 
-            $docBlock = $factory->create($property->getDocComment());
+
+            $docBlockString = $property->getDocComment();
+            if ($docBlockString === false) {
+                return [];
+            }
+
+            $docBlock = $factory->create($docBlockString);
+
             $vars = $docBlock->getTagsByName('var');
             /** @var Var_ $var */
             $var = $vars[0]; //Select first var notation
-
 
             /** @var Compound $type */
             $type = $var->getType();
@@ -146,25 +154,39 @@ class MediaTypeBuilder
         //Nested class
         $factory = \phpDocumentor\Reflection\DocBlockFactory::createInstance();
 
-        $docBlock = $factory->create($property->getDocComment());
-        $vars = $docBlock->getTagsByName('var');
-        /** @var Var_ $var */
-        $var = $vars[0]; //Select first var notation
-        /** @var Compound $valueType */
-        $valueType = $var->getType();
+        //Check typing first then docblock
+        $type = $property->getType();
 
-        $typeResolver = new TypeResolver();
-        $fqsenResolver = new FqsenResolver();
+        if ($type instanceof \ReflectionNamedType) {
+            $valueType = $type->getName();
+        } else {
+            $docBlockString = $property->getDocComment();
+            if ($docBlockString === false) {
+                return 'test';
+            }
 
-        $contextFactory = new ContextFactory();
+            $docBlock = $factory->create($docBlockString);
 
-        //Resolve potential imports
-        $context = $contextFactory->createFromReflector($class);
-        $name = $valueType->getFqsen()->getName();
-        $valueType = $typeResolver->resolve($name, $context);
+            $vars = $docBlock->getTagsByName('var');
+            /** @var Var_ $var */
+            $var = $vars[0]; //Select first var notation
+            /** @var Compound $valueType */
+            $valueType = $var->getType();
 
-        return $this->buildMockObjectResponseObject((string)$valueType->getFqsen());
+            $typeResolver = new TypeResolver();
+            $fqsenResolver = new FqsenResolver();
 
+            $contextFactory = new ContextFactory();
+
+            //Resolve potential imports
+            $context = $contextFactory->createFromReflector($class);
+            $name = $valueType->getFqsen()->getName();
+            $valueType = $typeResolver->resolve($name, $context);
+            $valueType = (string)$valueType->getFqsen();
+        }
+
+
+        return $this->buildMockObjectResponseObject($valueType);
         //Manual binding
     }
 
